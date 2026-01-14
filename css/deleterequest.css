@@ -1,0 +1,94 @@
+
+
+/* 2. Modal Container Customization */
+.custom-modal-content {
+    border-radius: 28px; 
+    border: none;
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Subtle shadow like the image */
+}
+
+.modal-header {
+    border-bottom: none;
+    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+}
+
+.modal-title {
+    font-weight: 600;
+    color: #1a2b4b;
+    font-size: 1.6rem;
+    letter-spacing: -0.5px;
+}
+
+.modal-body {
+    padding: 0 1.5rem;
+}
+
+.warning-text {
+    color: #4a5568;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.label-text {
+    font-weight: 500;
+    color: #1a2b4b;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Textarea Styling */
+.form-control {
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    padding: 15px;
+    resize: none;
+    background-color: #fff;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 3px rgba(26, 43, 75, 0.1);
+    border-color: #1a2b4b;
+}
+
+/* Footer / Button Styling */
+.modal-footer {
+    border-top: none;
+    display: flex;
+    gap: 12px;
+    padding: 1.5rem;
+}
+
+.btn-cancel {
+    flex: 1;
+    background: white;
+    border: 1.5px solid #1a2b4b;
+    color: #1a2b4b;
+    border-radius: 12px; /* Slightly less round for modern feel, or 30px for pill */
+    padding: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+    background-color: #f8f9fa;
+}
+
+.btn-delete {
+    flex: 1;
+    background-color: #1a2b4b;
+    border: none;
+    color: white;
+    border-radius: 12px; 
+    padding: 12px;
+    font-weight: 600;
+}
+
+.btn-delete:hover {
+    background-color: #111e35;
+}
+
+.btn-close {
+    margin-top: -10px;
+}

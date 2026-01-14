@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/css/intlTelInput.css">
+</head>
+<body>
+
+    <div class="auth-bg">
+        <div class="container auth-container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-10 col-md-8 col-lg-6 auth-card">
+
+                    <ul class="figma-steps list-unstyled">
+                        <li class="active" data-step="1">
+                            <i class="fa fa-user"></i>
+                            <span>Personal Details</span>
+                        </li>
+                        <li data-step="2">
+                            <i class="fa fa-lock"></i>
+                            <span>Secure Your Account</span>
+                        </li>
+                        <li data-step="3">
+                            <i class="fa fa-briefcase"></i>
+                            <span>Business Details</span>
+                        </li>
+                    </ul>
+
+                    <p class="figma-step-text">
+                        Step <span id="figmaCurrentStep">1</span> of 3 – Personal Details
+                    </p>
+
+                    <form id="buyerForm" novalidate>
+
+                        <div id="step-1" class="multistep-step active">
+                            <img src="./img/Vector.png" alt="logo" id="logo" class="mb-4">
+
+                            <div class="register-type-selection mb-4">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="regType" id="regBuyer" checked>
+                                    <label class="form-check-label" for="regBuyer">Register as Buyer</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="regType" id="regSeller">
+                                    <label class="form-check-label" for="regSeller">Register as Seller</label>
+                                </div>
+                            </div>
+
+                            <h3>Create your Seller account</h3>
+                            <p class="subtitle">Let's begin with your basic information.</p>
+
+                            <div class="row">
+                                <div class="col-sm-6 mb-3">
+                                    <label class="form-label" for="customer_firstname">First Name <span class="mand_field">*</span></label>
+                                    <input type="text" class="form-control required" name="firstname"
+                                        id="customer_firstname" placeholder="Enter your first name" 
+                                        autocomplete="given-name" data-name="First name">
+                                    <div class="error-message"></div>
+                                </div>
+                                <div class="col-sm-6 mb-3">
+                                    <label class="form-label" for="customer_lastname">Last Name <span class="mand_field">*</span></label>
+                                    <input type="text" class="form-control required" name="lastname" id="customer_lastname" placeholder="Enter your last name"
+                                        data-name="last name">
+                                    <div class="error-message"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Email Address *</label>
+                                <input type="email" class="form-control required" placeholder="Enter your email address" data-name="email">
+                                <div class="error-message"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Phone number *</label>
+                                <input type="text" id="phone" class="form-control required" placeholder="Enter your phone number" data-name="phone number">
+                                <div class="error-message"></div>
+                            </div>
+
+                            <div class="form-check mb-4">
+                                <input type="checkbox" class="form-check-input required" id="termsCheck">
+                                <label class="form-check-label" for="termsCheck">
+                                    I agree to all <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                                </label>
+                                <div class="error-message"></div>
+                            </div>
+
+                            <button type="button" class="btn figma-btn w-100 next-step">
+                                Continue <i class="fa fa-arrow-right ms-2"></i>
+                            </button>
+
+                            <p class="text-center login-text mt-3">
+                                Already have an account? <a href="#">Sign In</a>
+                            </p>
+                        </div>
+                        
+                        <div id="step-2" class="multistep-step">
+                            <h3>Set Up Your Password</h3>
+                            <p class="subtitle">Create a strong password to protect your account.</p>
+                        
+                            <div class="mb-3">
+                                <label class="form-label">Create password *</label>
+                                <div class="password-wrapper">
+                                    <input type="password" id="password" class="form-control required" data-name="Password" placeholder="Enter your password">
+                                    <i class="fa fa-eye"></i>
+                                    <div class="error-message"></div> 
+                                </div>
+                                <div id="password-strength-status"></div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Confirm password *</label>
+                                <div class="password-wrapper">
+                                    <input type="password" class="form-control required" data-name="Confirm Password" placeholder="Re-enter your password">
+                                    <i class="fa fa-eye"></i>
+                                    <div class="error-message"></div>
+                                </div>
+                            </div>
+                        
+                            <div class="step-actions figma-actions">
+                                <button type="button" class="btn register-btn-outline btn-back prev-step">
+                                    <i class="fa fa-arrow-left me-2"></i> Back
+                                </button>
+                        
+                                <button type="button" class="btn register-btn btn-continue next-step">
+                                    Continue <i class="fa fa-arrow-right ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <div id="step-3" class="multistep-step">
+
+                            <!-- STEP 3 - PAGE 1 -->
+                            <div id="step3-page-1" class="step3-page active">
+                        
+                                <h3>Add Your Business Information</h3>
+                                <p class="subtitle">
+                                    Provide your commercial and contact details as registered in your country.
+                                </p>
+                        
+                                <div class="mb-3">
+                                    <label class="form-label">Default language *</label>
+                                    <select class="form-select required" data-name="Default language">
+                                        <option selected>English (English)</option>
+                                    </select>
+
+                                    <div class="error-message"></div>
+                                </div>
+                        
+                                <div class="row">
+                                    <div class="col-sm-6 mb-3">
+                                        <label class="form-label">Company name *</label>
+                                        <input type="text" class="form-control required" data-name="Company name"
+                                               placeholder="e.g. Al-Mutairi Trading">
+                                               <div class="error-message"></div>
+                                    </div>
+                        
+                                    <div class="col-sm-6 mb-3">
+                                        <label class="form-label">Company website</label>
+                                        <input type="text" class="form-control required"
+                                               placeholder="e.g. almutairitrading.com">
+
+                                               <div class="error-message"></div>
+                                    </div>
+                                </div>
+                        
+                                <div class="mb-3">
+                                    <label class="form-label">Business email address *</label>
+                                    <input type="email" class="form-control required" data-name="Business email">
+                                    <div class="error-message"></div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Mobile number *</label>
+                                    <input type="tel" id="phone" class="form-control required" data-name="Mobile number" placeholder="512345678">
+                                    <div class="error-message"></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6 mb-3">
+                                        <label class="form-label">City *</label>
+                                        <input type="text" class="form-control required" data-name="City"
+                                               placeholder="e.g. Riyadh">
+
+                                               <div class="error-message"></div>
+                                    </div>
+                        
+                                    <div class="col-sm-6 mb-3">
+                                        <label class="form-label">Country *</label>
+                                        <select class="form-select required" id="country-selector" data-name="Country">
+                                            <option value="">Select a country</option>
+                                            </select>
+                                        <div class="error-message"></div>
+                                    </div>
+
+                                </div>
+                        
+                                <div class="step-actions figma-actions">
+    <button type="button" class="btn register-btn-outline btn-back prev-step">
+        <i class="fa fa-arrow-left me-2"></i> Back
+    </button>
+
+    <button type="button" class="btn register-btn btn-continue next-step step3-next">
+        Continue <i class="fa fa-arrow-right ms-2"></i>
+    </button>
+</div>
+
+                            </div>
+                        
+                            <!-- STEP 3 - PAGE 2 -->
+                            <div id="step3-page-2" class="step3-page">
+                        
+                                <h3>Verify Your Business Documents</h3>
+                                <p class="subtitle">
+                                    Upload the necessary licenses and certificates to activate your seller account.
+                                </p>
+                        
+                                <div class="mb-3">
+                                    <label class="form-label">VAT Number *</label>
+                                    <input type="text" class="form-control required"
+                                           placeholder="e.g. 310123456700003" data-name="VAT Number">
+                                           <div class="error-message"></div>
+                                </div>
+                        
+                                <div class="mb-3">
+                                    <label class="form-label">Commercial Registration (CR) Number *</label>
+                                    <input type="text" class="form-control required"
+                                           placeholder="e.g. 1012345678" data-name="CR Number">
+                                           <div class="error-message"></div>
+                                </div>
+                        
+                                <div class="row">
+                                    <div class="col-sm-6 mb-3">
+                                        <label class="form-label">CR Document *</label>
+                                        <div class="custom-upload" data-input="crDocument">
+                                            <i class="fa fa-upload"></i>
+                                            <p class="upload-title">Upload File</p>
+                                            <p class="upload-hint">PDF, JPG, PNG. Max 5MB.</p>
+                                        </div>
+                                        <input type="file" id="crDocument" class="hidden-file-input required">
+
+                                        <div class="error-message"></div>
+                                    </div>
+                        
+                                    <div class="col-sm-6 mb-3">
+                                        <label class="form-label">Upload VAT Certificate *</label>
+                                        <div class="custom-upload" data-input="vatDocument">
+                                            <i class="fa fa-upload"></i>
+                                            <p class="upload-title">Upload File</p>
+                                            <p class="upload-hint">PDF, JPG, PNG. Max 5MB.</p>
+                                        </div>
+                                        <input type="file" id="vatDocument" class="hidden-file-input required">
+                                        <div class="error-message"></div>
+                                    </div>
+                                </div>
+                        
+                               
+
+
+                                <div class="step-actions figma-actions">
+                                    <button type="button" class="btn register-btn-outline btn-back prev-step">
+                                        <i class="fa fa-arrow-left me-2"></i> Back
+                                    </button>
+                                
+                                    <button type="button" class="btn register-btn btn-continue next-step">
+                                        Confirm Registration <i class="fa fa-arrow-right ms-2"></i>
+                                    </button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+
+
+/* Mobile Sidebar States */
+  
+   
+
+
+.user-avatar {
+   width: 32px;
+   height: 32px;
+   background: #4e5d78;
+   border-radius: 8px;
+   font-weight: bold;
+}
+
+.nav-label {
+   font-size: 11px;
+   text-transform: uppercase;
+   color: #6b7280;
+   font-weight: 700;
+   padding: 20px 20px 10px;
+   letter-spacing: 0.5px;
+}
+
+.nav-link-custom {
+   padding: 10px 20px;
+   color: var(--sidebar-text);
+   text-decoration: none;
+   display: flex;
+   align-items: center;
+   font-size: 14px;
+   transition: 0.2s;
+   cursor: pointer;
+}
+
+.nav-link-custom:hover {
+   color: #fff;
+   background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-link-custom.active {
+   color: #fff;
+   background: rgba(255, 255, 255, 0.1);
+   border-radius: 8px;
+   margin: 0 10px;
+}
+
+.sub-nav {
+   padding-left: 20px;
+   display: block;
+   transition: all 0.3s;
+}
+
+.sub-nav.hidden {
+   display: none;
+}
+
+/* --- Table Styling --- */
+.card-custom {
+   border: 1px solid var(--border-color);
+   border-radius: 12px;
+   background: #fff;
+   overflow: hidden;
+}
+
+
+
+
+
+@media (max-width: 991.98px) {
+   .burger-btn {
+       display: block;
+   }
+
+   .search-box {
+       display: none !important;
+   }
+}
+/*for model message*/
+/* Chat UI Custom Styles */
+.chat-bubble-buyer {
+   background: #f4f7f9;
+   border-radius: 12px 0px 12px 12px;
+   font-size: 14px;
+   max-width: 320px;
+   color: #333;
+}
+.chat-bubble-seller {
+   background: #e9f5ff;
+   border-radius: 0px 12px 12px 12px;
+   font-size: 14px;
+   max-width: 320px;
+   color: #333;
+}
+.modal-content {
+   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+.btn-close:focus {
+   box-shadow: none;
+}
+.bi-chat-left-dots {
+   cursor: pointer;
+}
+/*BREADCRUMP ITEM*/
+.breadcrumb-item a{
+color: #444444;
+text-decoration: none;
+}
+/*
+.breadcrumb-item .active{
+color: #2E2E2E;
+}
+*/
+/*EDIT REQUEST AND SHOW MORE BUTTON*/
+/* Layout Container */
+.action-container {
+position: relative;
+display: inline-block;
+font-family: 'Segoe UI', Roboto, sans-serif;
+}
+.button-group {
+display: flex;
+align-items: center;
+gap: 12px; /* Replaces d-flex and ms-2 */
+}
+/* Edit Button Styling */
+.btn-edit {
+background-color: #1E293B;
+color: white;
+border: none;
+padding: 10px 24px;
+border-radius: 50px;
+font-weight: 600;
+display: flex;
+align-items: center;
+gap: 8px;
+cursor: pointer;
+}
+/* Circle More Button */
+.btn-more {
+background: #FBFBFB;
+border: 3px solid #E9E9E9;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+color: #4b5563;
+}
+.btn-more:hover {
+background-color: #f9fafb;
+}
+/* Popover Menu */
+.custom-popover {
+display: none; /* Hidden by default */
+position: absolute;
+top: 50px;
+left: 10px;
+background: white;
+border-radius: 12px;
+box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+border: 1px solid #f3f4f6;
+min-width: 180px;
+z-index: 100;
+overflow: hidden;
+}
+.popover-item {
+padding: 12px 16px;
+display: flex;
+align-items: center;
+gap: 12px;
+color: #374151;
+cursor: pointer;
+font-size: 14px;
+}
+.popover-item:hover {
+background-color: #f3f4f6;
+}
+
+.popover-item i {
+color: #6b7280;
+}
+/* Utility to show menu */
+.show-menu {
+display: block;
+}
+.showmore-btn{
+color: #1E293B;
+font-weight: 500;
+outline: none;
+margin-top: 10px;
+} 
+.request-headerright{
+display: flex;
+flex-direction: column;
+}
+.product-details-row{
+}
+/*REQUEST DETAILS TABLE START */
+/* Table Styling */
+.request-label {
+   font-style: italic;
+   color: #777;
+   margin-bottom: 10px;
+   display: block;
+   font-size: 13px;
+}
+
+.requestdetail-table {
+   width: 100%;
+   border-collapse: separate;
+   border-spacing: 0;
+   border: 1px solid #e0e0e0;
+   border-radius: 18px;
+   overflow: hidden;
+   table-layout: fixed; /* Keeps columns consistent */
+}
+
+.requestdetail-table thead tr {
+   background-color: #1c2a39;
+}
+
+.requestdetail-table th {
+   color: #ffffff;
+   font-weight: 400;
+   font-size: 12px;
+   padding: 12px 15px;
+   text-align: left;
+   border: none;
+}
+
+.requestdetail-table td {
+   padding: 15px;
+   font-size: 14px;
+   color: #333;
+   border-bottom: 1px solid #f0f0f0;
+   word-wrap: break-word;
+}
+
+.broadcast-tag {
+   background-color: #314d3f;
+   color: white;
+   padding: 4px 12px;
+   border-radius: 50px;
+   font-size: 11px;
+   white-space: nowrap;
+}
+
+/* Responsive Logic */
+@media (max-width: 768px) {
+  
+}
+/*REQUEST TABLE END*/
+
+
+
+
+
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+}

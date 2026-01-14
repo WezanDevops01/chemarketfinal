@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procurement Dashboard - Precise UI Match</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <style>
+
+
+
+        :root {
+            --sidebar-bg: #1c2536;
+            --sidebar-text: #9ea4ad;
+            --primary-blue: #2f54eb;
+            --bg-body: #f9fafb;
+            --dark-header: #1c2536;
+            --border-color: #eaecf0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: #101828;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- Sidebar & Layout Logic --- */
+        #wrapper {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        #sidebar-wrapper {
+            width: 260px;
+            background: var(--sidebar-bg);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            z-index: 1050;
+            position: relative;
+        }
+
+        #page-content-wrapper {
+            flex-grow: 1;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Sidebar States */
+        @media (max-width: 991.98px) {
+            #sidebar-wrapper {
+                position: fixed;
+                left: -260px;
+                height: 100%;
+            }
+
+            #wrapper.toggled #sidebar-wrapper {
+                left: 0;
+            }
+
+            #sidebar-overlay {
+                display: none;
+                position: fixed;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1040;
+            }
+
+            #wrapper.toggled #sidebar-overlay {
+                display: block;
+            }
+        }
+
+        .sidebar-heading {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            background: #4e5d78;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .nav-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #6b7280;
+            font-weight: 700;
+            padding: 20px 20px 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link-custom {
+            padding: 10px 20px;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-link-custom:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link-custom.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin: 0 10px;
+        }
+
+        .sub-nav {
+            padding-left: 20px;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        .sub-nav.hidden {
+            display: none;
+        }
+
+        /* --- Table Styling --- */
+        .card-custom {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .table thead th {
+            background-color: var(--dark-header);
+            color: #fff;
+            font-weight: 500;
+            font-size: 13px;
+            padding: 14px 16px;
+            border: none;
+        }
+
+        .table tbody td {
+            padding: 16px;
+            vertical-align: middle;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        .status-pill {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .in-progress {
+            background: #eff8ff;
+            color: #175cd3;
+            border: 1px solid #b2ddff;
+        }
+
+        /* --- Expanded Content --- */
+        .expanded-container {
+            background-color: #f8fbff;
+            padding: 24px;
+        }
+        .expanded-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 0px;
+        }
+
+        .expanded-label {
+            color: #667085;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .expanded-value {
+            color: #101828;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .dashed-line {
+            border-top: 1px dashed #d0d5dd;
+            margin: 20px 0;
+        }
+
+        /* --- Custom Pagination --- */
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-link {
+            color: #344054;
+            border: 1px solid #d0d5dd;
+            padding: 8px 12px;
+            border-radius: 8px !important;
+            margin: 0 2px;
+        }
+
+        .page-item.active .page-link {
+            background-color: #1c2536;
+            color: white;
+            border-color: #1c2536;
+        }
+
+        .btn-page-nav {
+            background: #fff;
+            border: 1px solid #d0d5dd;
+            border-radius: 8px;
+            padding: 8px 12px;
+            color: #344054;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .badge-new {
+            background: #A20202;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            position: absolute;
+            top: -15px;
+            right: -8px;
+            border-radius: 20px;
+        }
+
+        /* Utility */
+        .burger-btn {
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+        }
+
+        @media (max-width: 991.98px) {
+            .burger-btn {
+                display: block;
+            }
+
+            .search-box {
+                display: none !important;
+            }
+        }
+
+
+
+
+
+        /*for model message*/
+
+        /* Chat UI Custom Styles */
+        .chat-bubble-buyer {
+            background: #f4f7f9;
+            border-radius: 12px 0px 12px 12px;
+            font-size: 14px;
+            max-width: 320px;
+            color: #333;
+        }
+
+        .chat-bubble-seller {
+            background: #e9f5ff;
+            border-radius: 0px 12px 12px 12px;
+            font-size: 14px;
+            max-width: 320px;
+            color: #333;
+        }
+
+        .modal-content {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-close:focus {
+            box-shadow: none;
+        }
+
+        .bi-chat-left-dots {
+            cursor: pointer;
+        }
+
+/*BREADCRUMP ITEM*/
+
+.breadcrumb-item a{
+    color: #444444;
+    text-decoration: none;
+}
+
+
+
+
+/*
+.breadcrumb-item .active{
+ color: #2E2E2E;
+}
+
+*/
+
+
+
+/*EDIT REQUEST AND SHOW MORE BUTTON*/
+
+
+/* Layout Container */
+.action-container {
+    position: relative;
+    display: inline-block;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .button-group {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Replaces d-flex and ms-2 */
+  }
+  
+  /* Edit Button Styling */
+  .btn-edit {
+    background-color: #1E293B;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  
+  /* Circle More Button */
+  .btn-more {
+    background: #FBFBFB;
+    border: 3px solid #E9E9E9;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #4b5563;
+  }
+  
+  .btn-more:hover {
+    background-color: #f9fafb;
+  }
+  
+  /* Popover Menu */
+  .custom-popover {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f3f4f6;
+    min-width: 180px;
+    z-index: 100;
+    overflow: hidden;
+  }
+  
+  .popover-item {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #374151;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .popover-item:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .popover-item i {
+    color: #6b7280;
+  }
+  
+  /* Utility to show menu */
+  .show-menu {
+    display: block;
+  }
+
+
+
+.showmore-btn{
+     color: #1E293B;
+     font-weight: 500;
+     outline: none;
+     margin-top: 10px;
+} 
+
+
+
+.request-headerright{
+ display: flex;
+ flex-direction: column;
+
+}
+
+
+
+
+
+
+
+        body {
+            background-color: #f6f7f9;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            background: #0f172a;
+            color: #fff;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1050;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar a {
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            border-radius: 6px;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a.active,
+        .sidebar a:hover {
+            background: #1e293b;
+            color: #fff;
+        }
+
+        .sidebar .section-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #94a3b8;
+            margin: 20px 15px 10px;
+        }
+
+        /* Main Content */
+        .main-content {
+            width: 100%;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+
+
+
+        /* Mobile Adjustments */
+        @media (max-width: 991px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1040;
+            }
+
+            .overlay.active {
+                display: block;
+            }
+        }
+
+        /* Header */
+        .top-bar {
+            padding: 15px 20px;
+            border-radius: 10px;
+        }
+
+        /* Badges */
+        .badge-active {
+            background: #F3FFF7;
+            color: #365A42;
+            padding: 10px 20px;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+            border-radius: 30px;
+        }
+
+        .badge-expired {
+            background: #FFFBFB;
+            color: #CF3D3D;
+            padding: 10px 20px;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+            border-radius: 30px;
+        }
+
+        .badge-broadcast {
+            background: #365A42;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .badge-new {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        /* Table card and Scroll */
+        .card-custom {
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .table-responsive-custom {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .btn-view {
+            border-radius: 20px;
+            padding: 5px 20px;
+        }
+
+        thead {
+            background-color: #1E293B !important;
+            color: white;
+        }
+
+        .add-new-request {
+            background-color: #1E293B;
+            color: #FFFFFF;
+            border-radius: 30px;
+        }
+
+        .top-header {
+            height: 64px;
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        .search-wrapper input {
+            height: 42px;
+            font-size: 14px;
+        }
+
+        .bg-danger {
+            right: -28px;
+            font-size: 11px;
+        }
+
+        .cart-icon {
+            margin-right: 2rem;
+        }
+
+        
+        
+
+        .user-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 14px;
+            padding: 14px 18px;
+            color: #ffffff;
+        }
+
+        .avatar {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Mobile specific hiding for search/labels */
+        @media (max-width: 576px) {
+            .search-wrapper {
+                display: none;
+            }
+
+            .top-header .fw-semibold {
+                font-size: 16px;
+            }
+
+           
+        }
+
+
+
+        .card-custom {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        .table thead th {
+            background-color: #1e293b !important;
+            color: #ffffff;
+            font-weight: 500;
+            padding: 18px 10px;
+            border: none;
+            font-size: 14px;
+        }
+
+        .table tbody td {
+            padding: 16px 20px;
+            vertical-align: middle;
+            color: #475569;
+            font-size: 14px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        /* Badges */
+        .badge-broadcast {
+            background-color: #124C85;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-weight: 400;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-status {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge-status::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status-active {
+            background-color: #f3fff7;
+            color: #365a42;
+        }
+
+        .status-active::before {
+            background-color: #365a42;
+        }
+
+        .status-expired {
+            background-color: #fff1f1;
+            color: #cf3d3d;
+        }
+
+        .status-expired::before {
+            background-color: #cf3d3d;
+        }
+
+        .btn-view {
+            border: 1px solid #1e293b;
+            color: #1e293b;
+            border-radius: 20px;
+            padding: 4px 25px;
+            font-size: 13px;
+            transition: all 0.2s;
+            background: transparent;
+        }
+
+        .btn-view:hover {
+            background-color: #1e293b;
+            color: #fff;
+        }
+
+        .badge-new {
+            background-color: #cf3d3d;
+            color: white;
+            border-radius: 10px;
+            padding: 4px 10px;
+            font-size: 11px;
+        }
+
+        /* Custom Pagination Styling */
+        .pagination-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-info {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .page-info select {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 4px 12px;
+            margin: 0 5px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .custom-pagination {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .page-nav-btn {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background: #fff;
+            color: #64748b;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .page-nav-btn.active {
+            background-color: #1e293b;
+            color: #fff;
+            border-color: #1e293b;
+        }
+
+        .page-nav-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f8f9fa;
+        }
+
+        .page-nav-btn:hover:not(.active, .disabled) {
+            background-color: #f1f5f9;
+        }
+
+        .btn-text {
+            width: auto;
+            padding: 0 15px;
+        }
+
+        /* Hide DataTables default UI */
+        .dataTables_wrapper .dataTables_info,
+        .dataTables_wrapper .dataTables_paginate,
+        .dataTables_wrapper .dataTables_length {
+            display: none !important;
+        }
+
+
+
+/*STYLE FOR FILTER CONTROL SELECT OPTION START*/
+
+.filter-controls {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+/* Styling the Select to match the Figma design */
+.filter-select {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 8px 35px 8px 15px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    cursor: pointer;
+    appearance: none; /* Removes default OS arrow */
+    /* Custom dropdown arrow SVG */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23666' d='M0 3l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    font-weight: 500;
+    transition: border-color 0.2s;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: #1c2a39;
+}
+
+/*STYLE FOR FILTER CONTROL SELECT OPTION START*/
+
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .filter-controls { 
+        width: 100%; 
+        flex-direction: column; 
+        gap: 10px;
+    }
+    .filter-select { 
+        width: 100%; 
+    }
+}
+
+
+/* Ensure the parent of the badge is the anchor point */
+.position-relative {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Precise positioning for the New badge over the icon */
+.badge-new {
+    background-color: #cf3d3d;
+    color: white;
+    border-radius: 20px;
+    padding: 2px 6px;
+    font-size: 10px;
+    position: absolute;
+    top: -8px;    /* Adjusted from -15px */
+    right: -10px; /* Adjusted from -8px */
+    border: 2px solid #fff; /* Optional: adds a ring to make it pop */
+    line-height: 1;
+}
+
+/* Ensure icons don't shrink and stay centered */
+.cursor-pointer {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.accept-rejec-group{
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-top: 10px;
+
+}
+.accept-rejec-group button{
+    border-radius: 30px;
+    color: #1E293B;
+    padding:10px 30px;
+    border: 2px solid #1E293B;
+}
+.accept-rejec-group button:first-child{
+
+    color: white;
+    background-color: #1E293B;
+   border: none;  
+}
+
+
+.description-title{
+    font-size: 11px;
+    font-weight:500 ;
+    color: #444444;
+}
+.description-details{
+    font-size: 14px;
+    font-weight: 500;
+
+    color: #353536;
+}
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <div id="sidebar-overlay"></div>
+
+        <div id="sidebar-wrapper">
+            <div class="profile-card">
+                <div class="profile-avatar">
+                    <img src="../img/profile.png" alt="Avatar">
+                </div>
+                
+                <div class="profile-info">
+                    <div class="name-wrapper">
+                        <span class="profile-name">Watson An...</span>
+                        <span class="dropdown-icon">▼</span>
+                    </div>
+                    <div class="profile-email">Watsonbuyer@gm...</div>
+                </div>
+               
+                <div>
+                    <img src="../img/Frame.png" alt="">
+                </div>
+               
+            </div>
+
+
+            <div class="nav-label">Procurement</div>
+            <div id="quotation-toggle" class="nav-link-custom">
+                <i class="bi bi-file-earmark-text me-3"></i> Quotation
+                <i class="bi bi-chevron-down ms-auto small"></i>
+            </div>
+            <div id="quotation-subnav" class="sub-nav">
+                <a href="#" class="nav-link-custom "><i class="bi bi-broadcast me-3"></i> Broadcast RFQ</a>
+                <a href="#" class="nav-link-custom active" ><i class="bi bi-bullseye me-3"></i> Direct RFQ</a>
+            </div>
+            <a href="#" class="nav-link-custom"><i class="bi bi-box-seam me-3"></i> Orders Management</a>
+            <a href="#" class="nav-link-custom"><i class="bi bi-journal-text me-3"></i> Samples Request</a>
+            <a href="#" class="nav-link-custom"><i class="bi bi-check-circle me-3"></i> My Approved Products</a>
+
+            <div class="nav-label">Account Management</div>
+            <a href="#" class="nav-link-custom"><i class="bi bi-person me-3"></i> Profile</a>
+            <a href="#" class="nav-link-custom"><i class="bi bi-geo-alt me-3"></i> Addresses</a>
+            <a href="#" class="nav-link-custom"><i class="bi bi-people me-3"></i> Manage Staff</a>
+
+            <div class="nav-label">Selling</div>
+            <a href="#" class="nav-link-custom"><i class="bi bi-megaphone me-3"></i> Become a Seller</a>
+        </div>
+
+        <div class="main-content">
+
+            <div class="top-header d-flex align-items-center justify-content-between px-2 px-md-4 py-3 border-bottom">
+
+                <button class="btn d-lg-none border-0 fs-3" id="sidebarToggle">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="fw-semibold fs-5 ms-2">
+                    Quotation
+                </div>
+
+                <div class="flex-grow-1 d-flex justify-content-center px-4">
+                    <div class="search-wrapper position-relative w-100" style="max-width:520px;">
+                        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                        <input type="text" class="form-control ps-5 rounded-pill" placeholder="Search our marketplace">
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center gap-2 gap-md-4">
+                    <div class="position-relative d-flex align-items-center cursor-pointer cart-icon">
+                        <i class="bi bi-cart fs-5"></i>
+                        <span class="d-none d-md-inline ms-1">Cart</span>
+                        <span class="badge bg-danger rounded-pill position-absolute">01</span>
+                    </div>
+                    <div class="d-flex align-items-center cursor-pointer">
+                        <i class="bi bi-gear fs-5"></i>
+                        <span class="d-none d-md-inline ms-1">Settings</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="top-bar d-flex flex-wrap align-items-center justify-content-between my-4">
+                <div>
+                    <h4 class="mb-1">Direct RFQ Requests</h4>
+                    <p class="text-muted small">Monitor status and responses for all your direct supplier inquiries.</p>
+                </div>
+            
+            </div>
+
+            <div class="filter-controls">
+                <select class="filter-select" id="statusSelect">
+                    <option value="all">Status: All</option>
+                    <option value="active">Status: Active</option>
+                    <option value="pending">Status: Pending</option>
+                    <option value="expired">Status: Expired</option>
+                </select>
+    
+                <select class="filter-select" id="timeSelect">
+                    <option value="this-week">Time period: This week</option>
+                    <option value="today">Time period: Today</option>
+                    <option value="this-month">Time period: This month</option>
+                    <option value="all-time">Time period: All time</option>
+                </select>
+            </div>
+
+            <div class="card card-custom">
+                <div class="table-responsive">
+                    <table id="rfqTable" class="table table-hover m-0" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Request ID</th>
+                                <th>Title</th>
+                                <th>Quantity</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Request Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>501</td>
+                                <td>Sodium Benzoate</td>
+                                <td>200 MT</td>
+                                <td><span class="badge-broadcast"><i class="bi bi-bullseye"></i> Direct</span></td>
+                                <td><span class="badge-status status-active">Active</span></td>
+                                <td>2025-11-20</td>
+                                <td> <a href="chemarketupdateui/updated.html# " class="btn btn-view">View</a>  
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>500</td>
+                                <td>Vitamin C (USP)</td>
+                                <td>150 KG</td>
+                                <td><span class="badge-broadcast"><i class="bi bi-bullseye"></i> Direct</span></td>
+                                <td><span class="badge-status status-active">Active</span></td>
+                                <td>2025-11-20</td>
+                                <td><button class="btn btn-view">View</button></td>
+                            </tr>
+                            <tr>
+                                <td>499</td>
+                                <td>Caustic Soda Flakes</td>
+                                <td>500 MT</td>
+                                <td><span class="badge-broadcast"><i class="bi bi-bullseye"></i>Direct</span></td>
+                                <td><span class="badge-status status-active">Active</span></td>
+                                <td>2025-11-20</td>
+                                <td><button class="btn btn-view">View</button></td>
+                            </tr>
+                            <tr>
+                                <td>498</td>
+                                <td>Hydrogen Peroxide</td>
+                                <td>200 MT</td>
+                                <td><span class="badge-broadcast"><i class="bi bi-bullseye"></i> Direct</span></td>
+                                <td><span class="badge-status status-expired">Expired</span></td>
+                                <td>2025-11-20</td>
+                                <td><button class="btn btn-view">View</button></td>
+                            </tr>
+                            <tr>
+                                <td>497</td>
+                                <td>Sodium Chloride</td>
+                                <td>100 MT</td>
+                                <td><span class="badge-broadcast"><i class="bi bi-bullseye"></i> Direct</span></td>
+                                <td><span class="badge-status status-active">Active</span></td>
+                                <td>2025-11-20</td>
+                                <td class="d-flex align-items-center ">
+                                    <a href="#" class="btn btn-view">View</a>
+                                
+                                    <div class="d-flex align-items-center gap-3 ms-2">
+                                        <div class="position-relative cursor-pointer">
+                                            <i class="bi bi-chat-left-dots fs-5"></i>
+                                            <span class="badge-new">New</span>
+                                        </div>
+                                        
+                                        <i class="bi bi-chevron-down expand-btn fs-5 cursor-pointer"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>496</td>
+                                <td>Testing Item 6</td>
+                                <td>50 MT</td>
+                                <td><span class="badge-broadcast"><i class="bi bi-bullseye"></i> Direct</span></td>
+                                <td><span class="badge-status status-active">Active</span></td>
+                                <td>2025-11-21</td>
+                                <td class="d-flex align-items-center gap-2">
+                                    <a href="#" class="btn btn-view">View</a>
+                                
+                                    <div class="d-flex align-items-center gap-3 ms-2">
+                                        <div class="position-relative cursor-pointer">
+                                            <i class="bi bi-chat-left-dots fs-5"></i>
+                                            <span class="badge-new">New</span>
+                                        </div>
+                                        
+                                        <i class="bi bi-chevron-down expand-btn fs-5 cursor-pointer"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="pagination-wrapper">
+                <div class="page-info">
+                    Showing page
+                    <select id="customPageSelect">
+                    </select>
+                    of <span id="totalPages">01</span>
+                </div>
+
+                <div class="custom-pagination" id="customPaginationNav">
+                    <div class="page-nav-btn" data-action="first"><i class="bi bi-chevron-double-left"></i></div>
+                    <div class="page-nav-btn btn-text" data-action="prev"><i class="bi bi-chevron-left me-1"></i>
+                        Previous</div>
+
+                    <div id="pageNumbers" class="d-flex gap-2">
+                    </div>
+
+                    <div class="page-nav-btn btn-text" data-action="next">Next <i class="bi bi-chevron-right ms-1"></i>
+                    </div>
+                    <div class="page-nav-btn" data-action="last"><i class="bi bi-chevron-double-right"></i></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <script type="text/template" id="child_1">
+        <div class="expanded-container">
+            <div class="expanded-grid">
+                <div><div class="expanded-label">Payment Terms</div><div class="expanded-value">CIA (Cash in Advance)</div></div>
+                <div><div class="expanded-label">Proposal status</div><div class="expanded-value">USD</div></div>
+                <div><div class="expanded-label">Incoterm</div><div class="expanded-value">CIF</div></div>
+                <div><div class="expanded-label">Lead time</div><div class="expanded-value">12 days</div></div>
+                <div><div class="expanded-label">Currency</div><div class="expanded-value">USD</div></div>
+                <div><div class="expanded-label">valid until</div><div class="expanded-value">25 Nov 2025</div></div>
+                <div><div class="expanded-label">Unit </div><div class="expanded-value">100</div></div>
+                <div><div class="expanded-label">Rate</div><div class="expanded-value">170</div></div>
+                <div><div class="expanded-label">Sub total</div><div class="expanded-value">5000 SAR <span>$1,500 USD </span></div></div>
+            </div>
+            <div class="dashed-line"></div>
+            <div class="d-flex  align-items-center gap-sm-5 gap-3 flex-wrap">
+
+                <div >
+                    <p class="description-title">Description</p>
+                    <p class="description-details">Packed in 25 kg bags, palletized (standard export pallets). Shelf life minimum 18 months. Include batch/lot traceability in COA.</p>
+
+                </div>
+                     
+                     
+                <div class="">
+                    <div class="expanded-label">VAT</div>
+                    <div class="expanded-value">0.00%</div>
+                </div>
+                <div class="">
+                    <div class="expanded-label">Total</div>
+                    <div class="expanded-value fs-5">$1,720 USD</div>
+                </div>
+                  
+                
+            </div>
+
+             <div class="accept-rejec-group">
+                <button class="btn accept-btn">Accept</button>
+                <button class="btn reject-btn">Reject</button>
+            </div>
+        </div>
+    </script>
+    <!-- if user enter clicked accept  -->
+
+    <!--  <button class="btn ">Proceed to Cart To Place Order</button>  -->
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Initialize DataTable (Fixing the ID to match your HTML table)
+            var table = $('#rfqTable').DataTable({
+                "dom": 't',
+                "ordering": false,
+                "pageLength": 6 // Matches your current UI
+            });
+
+            // FIX: Sidebar Toggle Logic
+            // Combined both the button and the overlay to trigger the toggle
+            $("#sidebarToggle, #sidebar-overlay").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+
+            // Sidebar Accordion Logic (Quotation sub-menu)
+            $('#quotation-toggle').click(function () {
+                $('#quotation-subnav').toggleClass('hidden');
+                $(this).find('.bi-chevron-down').toggleClass('bi-chevron-up');
+            });
+
+            // Optional: Close sidebar when a nav-link is clicked on mobile
+            $('.nav-link-custom').click(function () {
+                if (window.innerWidth < 992 && !$(this).is('#quotation-toggle')) {
+                    $("#wrapper").removeClass("toggled");
+                }
+            });
+
+          
+
+            // Table Expansion Logic
+// FIX: Changed '#proposalsTable' to '#rfqTable' to match your HTML
+$('#rfqTable tbody').on('click', '.expand-btn', function () {
+    var tr = $(this).closest('tr');
+    var row = table.row(tr);
+
+    if (row.child.isShown()) {
+        // This row is already open - close it
+        row.child.hide();
+        $(this).removeClass('bi-chevron-up').addClass('bi-chevron-down');
+        tr.removeClass('shown');
+    } else {
+        // Open this row
+        // Using the content from your template script tag
+        row.child($('#child_1').html(), 'p-0').show();
+        $(this).removeClass('bi-chevron-down').addClass('bi-chevron-up');
+        tr.addClass('shown');
+    }
+});
+
+
+$(document).on('click', '.accept-btn', function() {
+    // 'this' refers to the specific Accept button that was clicked
+    $(this).text('Proceed to Cart To Place Order');
+
+    // Find the reject button within the same group and hide it
+    $(this).siblings('.reject-btn').hide();
+});
+
+
+        });
+    </script>
+</body>
+
+</html>
