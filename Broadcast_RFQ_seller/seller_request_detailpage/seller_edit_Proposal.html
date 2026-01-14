@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Management - Proposal Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="user-profile">
+                <img src="https://i.pravatar.cc/150?img=11" alt="Robert Klein" class="user-avatar">
+                <div class="user-info">
+                    <span class="user-name">Robert Klein</span>
+                    <span class="user-email">robertseller@gmail...</span>
+                </div>
+                <button class="sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <span class="nav-header">OVERVIEW</span>
+                    <a href="#" class="nav-item"><i class="fa-solid fa-house"></i> Home</a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-header">ACCOUNT MANAGEMENT</span>
+                    <a href="#" class="nav-item"><i class="fa-regular fa-user"></i> Profile</a>
+                    <a href="#" class="nav-item"><i class="fa-solid fa-file-invoice-dollar"></i> Plan Subscriptions</a>
+                    <a href="#" class="nav-item"><i class="fa-solid fa-users"></i> Manage Staff</a>
+                    <a href="#" class="nav-item"><i class="fa-solid fa-store"></i> My Store</a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-header">PRODUCTS</span>
+                    <a href="#" class="nav-item"><i class="fa-solid fa-box-open"></i> Product Management</a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-header">LEAD MANAGEMENT</span>
+                    <a href="#" class="nav-item active"><i class="fa-solid fa-bullhorn"></i> Broadcast RFQ</a>
+                    <a href="#" class="nav-item"><i class="fa-solid fa-crosshairs"></i> Direct RFQ</a>
+                    <a href="#" class="nav-item"><i class="fa-solid fa-flask"></i> Samples Request</a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-header">ORDERS</span>
+                    <a href="#" class="nav-item"><i class="fa-solid fa-clipboard-list"></i> Order Management</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fa-solid fa-bars"></i></button>
+                    <h1>Lead management</h1>
+                </div>
+                <div class="header-right">
+                <div class="header-search">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Search our marketplace">
+                </div>
+                <div class="header-settings">
+                    <i class="fas fa-cog"></i> <span class="d-none d-md-inline">Settings</span>
+                </div>
+            </div>
+            </header>
+
+            <div class="breadcrumb-area">
+                <span>Broadcast RFQ</span> <i class="fa-solid fa-chevron-right"></i> <span class="active-crumb">ID: 501</span>
+            </div>
+
+            <div class="content-body">
+                <div class="page-title-row">
+                    <h2>Submitted Proposal Details</h2>
+                    <div class="action-buttons">
+                    <button class="btn btn-outline" id="btn-delete-proposal"><i class="fa-solid fa-trash"></i> Delete proposal</button>
+                    <button class="btn btn-primary"><i class="fa-solid fa-file-pen"></i> Edit proposal</button>
+                </div>
+
+                <div class="modal-overlay" id="deleteModal">
+                    <div class="modal-box">
+                        <div class="modal-header">
+                            <h3>Withdraw Proposal for Request #509?</h3>
+                            <button class="modal-close-icon" id="closeModalIcon"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        
+                        <p class="modal-description">
+                            You are withdrawing your active quote. The buyer will be notified that this offer is no longer valid.
+                        </p>
+
+                        <div class="modal-form-group">
+                            <label>Reason for Withdrawal (Optional)</label>
+                            <textarea placeholder="Briefly explain why you are withdrawing (e.g., pricing error, stock unavailability, or production delay)..."></textarea>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn-modal-withdraw">Withdraw</button>
+                            <button class="btn-modal-cancel" id="btnModalCancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="success-message" id="successMessage">
+                    <div class="success-toast">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                        <span>Proposal updated successfully</span>
+                        <button class="close-toast" id="closeToast"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+                <div class="tabs-container">
+                    <button class="tab-btn active" data-target="request-details"><i class="fa-regular fa-file-lines"></i> Request Details</button>
+                    <button class="tab-btn" data-target="submitted-proposal"><i class="fa-solid fa-file-contract"></i> Submitted Proposal</button>
+                    <button class="tab-btn" data-target="messages"><i class="fa-regular fa-comments"></i> Messages</button>
+                </div>
+
+                <div class="tab-content-area">
+                     <div id="request-details" class="tab-pane active">
+        <div class="detail-card">
+                <div class="detail-scroll-container">
+                    
+                    <div class="grid-header-row col-4-layout">
+                        <div class="grid-cell">Request ID</div>
+                        <div class="grid-cell">Product</div>
+                        <div class="grid-cell">Quantity</div>
+                        <div class="grid-cell">Lead type</div>
+                    </div>
+                    <div class="grid-data-row col-4-layout">
+                        <div class="grid-cell text-dark">#501</div>
+                        <div class="grid-cell text-dark">Sodium Benzoate (Food Grade)</div>
+                        <div class="grid-cell text-dark">200 MT</div>
+                        <div class="grid-cell">
+                            <span class="badge-broadcast"><i class="fas fa-bullhorn"></i> Broadcast</span>
+                        </div>
+                    </div>
+
+                    <div class="grid-header-row col-4-layout">
+                        <div class="grid-cell">Preferred location</div>
+                        <div class="grid-cell">Time period</div>
+                        <div class="grid-cell">Posted on</div>
+                        <div class="grid-cell">Expires on</div>
+                    </div>
+                    <div class="grid-data-row col-4-layout">
+                        <div class="grid-cell text-dark">India, UK & UAE</div>
+                        <div class="grid-cell text-dark">2/25/2025 - 12/31/2025</div>
+                        <div class="grid-cell text-dark">Dec 12, 2025, 12:00 PM</div>
+                        <div class="grid-cell text-dark">11/25/2025 (7 days remaining)</div>
+                    </div>
+
+                    <div class="grid-header-row col-3-layout">
+                        <div class="grid-cell">Categories</div>
+                        <div class="grid-cell">Incoterms</div>
+                        <div class="grid-cell">Documents Required for Buyer</div>
+                    </div>
+                    <div class="grid-data-row col-3-layout">
+                        <div class="grid-cell text-dark">Food grade industry</div>
+                        <div class="grid-cell text-dark">CIF</div>
+                        <div class="grid-cell text-dark">COA, SDS, TDS</div>
+                    </div>
+
+                    <div class="grid-header-row col-1-layout">
+                        <div class="grid-cell">Descriptions</div>
+                    </div>
+                    <div class="grid-data-row col-1-layout">
+                        <div class="grid-cell text-dark description-text">
+                            Looking to procure Sodium Benzoate (Food Grade) for use in food processing applications. The product should meet standard food safety and quality regulations. Preference will be given to suppliers who can ensure consistent quality, proper packaging, and timely delivery within the specified locations.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+                    
+                    <div class="tab-pane" id="submitted-proposal">
+                        <div class="data-grid-container">
+                            
+                            <div class="grid-header-row">
+                                <div class="col-product">Product</div>
+                                <div class="col-qty">Quantity</div>
+                                <div class="col-unit">Unit</div>
+                                <div class="col-status">Status</div>
+                            </div>
+                            <div class="grid-body-row">
+                                <div class="col-product">Sodium Benzoate (Food Grade)</div>
+                                <div class="col-qty">200</div>
+                                <div class="col-unit">MT</div>
+                                <div class="col-status"><span class="status-badge"><span class="dot"></span> In progress</span></div>
+                            </div>
+
+                            <div class="grid-header-row">
+                                <div>Quotation Validity Upto</div>
+                                <div>Payment Term</div>
+                                <div>Lead Time</div>
+                                <div>Incoterms</div>
+                            </div>
+                            <div class="grid-body-row">
+                                <div>India, UK & UAE</div>
+                                <div>CIA</div>
+                                <div>12 days</div>
+                                <div>CIF</div>
+                            </div>
+
+                            <div class="grid-header-row">
+                                <div class="col-attach">Attachments</div>
+                                <div>Currency</div>
+                                <div>Rate</div>
+                                <div class="col-subtotal">Sub Total</div>
+                            </div>
+                            <div class="grid-body-row">
+                                <div class="col-attach">
+                                    <div class="file-attachment">
+                                        <i class="fa-regular fa-file-pdf"></i>
+                                        <span>Halah certifications.pdf (450 KB)</span>
+                                    </div>
+                                </div>
+                                <div>USD</div>
+                                <div>170</div>
+                                <div class="col-subtotal">$1720 USD</div>
+                            </div>
+
+                            <div class="grid-header-row full-width">
+                                Descriptions
+                            </div>
+                            <div class="grid-body-row full-width">
+                                <p>Material is fresh production (Nov 2025). Packed in 50kg HDPE bags with liner. COA attached.</p>
+                            </div>
+
+                            <div class="grid-header-row full-width">
+                                Remarks
+                            </div>
+                            <div class="grid-body-row full-width">
+                                <p>Includes free delivery for orders over 500kg or COA available upon request</p>
+                            </div>
+
+                            <div class="grid-header-row footer-header">
+                                <div class="col-spacer"></div>
+                                <div>VAT</div>
+                                <div class="col-total">Total</div>
+                            </div>
+                            <div class="grid-body-row footer-body">
+                                <div class="col-spacer"></div>
+                                <div class="vat-val">0.00%</div>
+                                <div class="total-val">$1720 USD</div>
+                            </div>
+
+                        </div>
+                    </div>
+                     <div id="messages" class="tab-pane">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-user-info">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="User">
+                    <span class="chat-user-name">Olympia Espinoza</span>
+                </div>
+                <div class="chat-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search chats @ Olympia Espinoza">
+                </div>
+            </div>
+
+            <div class="chat-body">
+                <div class="date-divider"><span>Today</span></div>
+
+                <div class="msg-group left">
+                    <img src="https://i.pravatar.cc/150?img=11" class="msg-avatar">
+                    <div class="msg-content-wrapper">
+                        <span class="sender-name">Olympia Espinoza <small>2:20pm</small></span>
+                        <div class="msg-bubble">
+                            Yes, we do. Could you share the required quantity?
+                        </div>
+                    </div>
+                </div>
+
+                <div class="msg-group right">
+                    <div class="msg-content-wrapper">
+                        <span class="sender-name">Alex John <small>2:20pm</small></span>
+                        <div class="msg-bubble">
+                            Hello, I saw your listing for Sodium Benzoate. Could you confirm if you have stock available for immediate dispatch?
+                        </div>
+                    </div>
+                    <img src="https://i.pravatar.cc/150?img=12" class="msg-avatar">
+                </div>
+
+                <div class="unread-divider"><span>Unread messages</span></div>
+
+                <div class="msg-group left">
+                    <img src="https://i.pravatar.cc/150?img=11" class="msg-avatar">
+                    <div class="msg-content-wrapper">
+                        <span class="sender-name">Olympia Espinoza <small>2:20pm</small></span>
+                        <div class="msg-bubble">
+                            Are you have compatible audit trails for your product?
+                        </div>
+                        <div class="msg-bubble">
+                            Like COA, TDS & some other important documents.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-footer">
+                <div class="input-wrapper">
+                    <i class="far fa-comment-dots"></i>
+                    <input type="text" placeholder="Message Olympia Espinoza">
+                </div>
+                <button class="btn-send">
+                    <i class="fas fa-paper-plane"></i> Send message
+                </button>
+            </div>
+        </div>
+    </div>
+
+                    <div class="tab-pane" id="request-details">
+                        <div class="empty-state">Request Details Content Here</div>
+                    </div>
+                    <div class="tab-pane" id="messages">
+                        <div class="empty-state">Messages Content Here</div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+
+    </script>
+</body>
+</html>
+
+<style>
+  
+</style>
