@@ -1,0 +1,1636 @@
+{**
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Academic Free License version 3.0
+* that is bundled with this package in the file LICENSE.txt
+* It is also available through the world-wide-web at this URL:
+* https://opensource.org/licenses/AFL-3.0
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade this module to a newer
+* versions in the future. If you wish to customize this module for your needs
+* please refer to CustomizationPolicy.txt file inside our module for more information.
+*
+* @author Webkul IN
+* @copyright Since 2010 Webkul
+* @license https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
+*}
+
+{extends file=$layout}
+{if isset($themeConf['meta_title']) && $themeConf['meta_title']}
+	{block name='head_seo_title'}
+		{$themeConf['meta_title']|escape:'htmlall':'UTF-8'}
+	{/block}
+{/if}
+{if isset($themeConf['meta_description']) && $themeConf['meta_description']}
+	{block name='head_seo_description'}
+		{$themeConf['meta_description']|escape:'htmlall':'UTF-8'}
+	{/block}
+{/if}
+{block name='product_activation'}{/block}
+
+{block name='header'}
+   {include file='module:marketplace/views/templates/front/_partials/header.tpl'}
+{/block}
+
+{block name='content'}
+{if isset($parentBlock)}
+	{foreach from=$parentBlock key=key item=value}
+	
+		{if $value['name'] == 'registration'}
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+				<link rel="stylesheet" href="/themes/classic/assets/css/theme.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
+
+<style>
+  .seller_button button#account_btn {
+    height: 50px;
+    width: 160px;
+    border-radius: 30px;
+	opacity: unset !important;
+  }
+  .Seller_Register button.btn.btn-success.form_button.btn_confirm_register {
+    width: 195px;
+    border-radius: 30px;
+	height: 50px;
+  }
+  .form-group button.btn.btn-custom.btn-block {
+    width: 195px;
+  }
+  .card {
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+    background: #fff;
+    padding: 24px;
+	margin-top: 0px;
+	border-top-left-radius: 0px;
+  }
+  .nav-tabs > li.active > a,
+  .nav-tabs > li.active > a:focus,
+  .nav-tabs > li.active > a:hover {
+    background-color: #026D8F !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 0;
+  } 
+
+  .nav-tabs > li > a {
+    border: none !important;
+    color: #006884 !important;
+    font-weight: 500;
+    border-radius: 0;
+	background-color: #e4f2ff;
+	margin-right: 0px;
+  }
+  .form-control {
+    border-radius: 6px;
+  }
+  .btn-custom {
+    background-color: #026D8F;
+    color: #fff;
+    border-radius: 30px;
+  }
+  .btn-custom:hover {
+   background-color: #004358;
+   color: #fff !important;
+  }
+  #form_acc_info {
+    margin: 0px !important;
+    padding: 0px!important;
+}
+#mp_register_form .checkbox-inline+.checkbox-inline, #mp_register_form .radio-inline+.radio-inline {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+#footer {
+    padding-top: 2.5rem !important;
+}
+#registerTabsContent .col-sm-12{
+	padding: 0px;
+}
+
+.nav-tabs {
+    border-bottom: 0px;
+	width: fit-content;
+}
+#account_btn, .btn_confirm_register {
+    background-color: #026d8f !important;
+}
+#account_btn:hover {
+  background-color: #004358;
+}
+#mp_seller_phone_buyer {
+    width: 100%;
+}
+.btn_confirm_register {
+    margin-top: 20px;
+}
+.seller-form {
+    padding: 0px;
+}
+#id_gender label {
+    font-weight: normal;
+}
+ .multistep-step { transition: all .2s; }
+  .has-error .form-control, .has-error select, .has-error .form-check-input {
+    border: 1px solid #d9534f;
+    box-shadow: 0 0 2px #d9534f;
+  }
+  /* Move back button left on both steps */
+  #prev-step, #prev-step2 {
+    float:left;
+  }
+  /* Remove outline on click for better appearance */
+  #prev-step:focus, #prev-step2:focus {
+    outline: none;
+  }
+  /* Fix h3 text-center with floated button */
+  .multistep-step h3 {
+    overflow: hidden;
+    position: relative;
+    display: block;
+	font-weight: 500;
+  }
+  img.back_arrow {
+    float: left;
+}
+.buyer_register_tab {
+    border-top-left-radius: 20px !important;
+}
+.seller_register_tab {
+    border-top-right-radius: 20px !important;
+}
+.Upload_file{
+       margin-bottom: 35px;
+ }
+ #module-marketplace-sellerlogin #header .header-top .container .col-md-8 {
+    padding-left: 0px;
+	padding-right: 0px;
+}
+#module-marketplace-sellerlogin #header .header-top .position-static {
+    padding-left: 0px;
+	padding-right: 0px;
+}
+
+</style>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"></script>
+
+<script>
+/* document.addEventListener("DOMContentLoaded", function () {
+  const phoneFields = ["#mp_seller_phone_buyer", "#mp_seller_phone"];
+  const countryCodeInput = document.querySelector('input[name="country_code"]');
+
+  phoneFields.forEach(function (selector) {
+    const input = document.querySelector(selector);
+    if (input) {
+      const iti = window.intlTelInput(input, {
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+      });
+
+      function setDialCodeHiddenField() {
+        const countryData = iti.getSelectedCountryData();
+        if (countryCodeInput) {
+          countryCodeInput.value = countryData.dialCode ? countryData.dialCode : "";
+        }
+      }
+
+      // Prepend the dial code by default on page load if empty
+      input.addEventListener("load", function () {
+        const countryData = iti.getSelectedCountryData();
+        const dialCode = countryData.dialCode;        
+        setDialCodeHiddenField();
+      });
+      // Trigger load event manually
+      input.dispatchEvent(new Event("load"));
+
+      input.addEventListener("countrychange", function () {
+        const countryData = iti.getSelectedCountryData();
+        const dialCode = countryData.dialCode;
+        // (optional) update the input field if desired:
+        // let currentValue = input.value.replace(/^(\+\d+\s?)?/, "");
+        // input.value = "+" + dialCode + " " + currentValue;
+        setDialCodeHiddenField();
+      });
+    }
+  });
+}); */
+/*
+document.addEventListener("DOMContentLoaded", function () {
+  const phoneFields = ["#mp_seller_phone_buyer", "#mp_seller_phone"];
+  const countryCodeInput = document.querySelector('input[name="country_code"]');
+
+  // Map country ISO code (uppercase) to max length
+  const countryLengths = {
+    IN: 10, // India
+    SA: 9,  // Saudi Arabia
+    AE: 9,  // UAE
+    BH: 8,  // Bahrain
+    KW: 8,  // Kuwait
+    OM: 8,  // Oman
+    QA: 8,  // Qatar
+    BD: 10, // Bangladesh
+    PK: 10, // Pakistan
+    AF: 9   // Afghanistan
+  };
+
+  phoneFields.forEach(function (selector) {
+    const input = document.querySelector(selector);
+    if (input) {
+      // Save initial maxlength (if any)
+      const defaultMaxLength = input.getAttribute("maxlength") || "15";
+
+      const iti = window.intlTelInput(input, {
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+      });
+
+      function setDialCodeHiddenField() {
+        const countryData = iti.getSelectedCountryData();
+        if (countryCodeInput) {
+          countryCodeInput.value = countryData.dialCode ? countryData.dialCode : "";
+        }
+      }
+
+      function updateMaxLength() {
+        const countryData = iti.getSelectedCountryData();
+        const iso = countryData.iso2 ? countryData.iso2.toUpperCase() : "";
+        const maxLen = countryLengths[iso] || defaultMaxLength;
+        input.setAttribute("maxlength", maxLen);
+        input.setAttribute("minlength", maxLen); // Optional: for HTML5 validation
+      }
+
+      // On load
+      input.addEventListener("load", function () {
+        setDialCodeHiddenField();
+        updateMaxLength();
+      });
+      // Trigger load event manually
+      input.dispatchEvent(new Event("load"));
+
+      // On country change
+      input.addEventListener("countrychange", function () {
+        setDialCodeHiddenField();
+        updateMaxLength();
+      });
+    }
+  });
+});
+
+*/
+
+document.addEventListener("DOMContentLoaded", function () {
+  const phoneFields = ["#mp_seller_phone_buyer", "#mp_seller_phone"];
+  const countryCodeInput = document.querySelector('input[name="country_code"]');
+
+  // Map country ISO code (uppercase) to max length
+  const countryLengths = {
+    IN: 10, // India
+    SA: 9,  // Saudi Arabia
+    AE: 9,  // UAE
+    BH: 8,  // Bahrain
+    KW: 8,  // Kuwait
+    OM: 8,  // Oman
+    QA: 8,  // Qatar
+    BD: 10, // Bangladesh
+    PK: 10, // Pakistan
+    AF: 9   // Afghanistan
+  };
+
+  phoneFields.forEach(function (selector) {
+    const input = document.querySelector(selector);
+    if (input) {
+      // Save initial maxlength (if any)
+      const defaultMaxLength = input.getAttribute("maxlength") || "15";
+
+      const iti = window.intlTelInput(input, {
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+      });
+
+      function setDialCodeHiddenField() {
+        const countryData = iti.getSelectedCountryData();
+        if (countryCodeInput) {
+          countryCodeInput.value = countryData.dialCode ? countryData.dialCode : "";
+        }
+      }
+
+      function updateMaxLength() {
+        const countryData = iti.getSelectedCountryData();
+        const iso = countryData.iso2 ? countryData.iso2.toUpperCase() : "";
+        
+        let maxLen = countryLengths.hasOwnProperty(iso) ? countryLengths[iso] : 15;
+        let minLen = countryLengths.hasOwnProperty(iso) ? countryLengths[iso] : 10;
+
+        input.setAttribute("maxlength", maxLen);
+        input.setAttribute("minlength", minLen); // HTML5 validation
+      }
+
+      // Trigger updates on load
+      input.addEventListener("load", function () {
+        setDialCodeHiddenField();
+        updateMaxLength();
+      });
+      input.dispatchEvent(new Event("load"));
+
+      // On country change
+      input.addEventListener("countrychange", function () {
+        setDialCodeHiddenField();
+        updateMaxLength();
+      });
+    }
+  });
+});
+
+
+  $(function() {
+    $('#registerTabs a').click(function (e) {
+      e.preventDefault();
+      $(this).tab('show');
+    });
+  });
+
+$(document).ready(function() {
+  var passwordFields = ['#customer_password', '#passwd'];
+
+  // Insert meter and suggestions
+  $.each(passwordFields, function(i, selector) {
+    var $field = $(selector);
+    if ($field.length && $field.next('.password-meter-wrapper').length === 0) {
+      $field.after(
+        '<div class="password-meter-wrapper">' +
+          '<div class="password-strength" style="margin-top:5px; font-weight:bold;"></div>' +
+          '<div class="password-suggestions" style="font-size:12px; color:#888; margin-top:2px;"></div>' +
+        '</div>'
+      );
+    }
+  });
+
+  function checkPasswordStrength(pwd) {
+    var suggestions = [];
+    var strength = 0;
+    if (pwd.length >= 6) strength++; else suggestions.push("at least 6 characters");
+    if (/[a-z]/.test(pwd)) strength++; else suggestions.push("a lowercase letter");
+    if (/[A-Z]/.test(pwd)) strength++; else suggestions.push("an uppercase letter");
+    if (/[0-9]/.test(pwd)) strength++; else suggestions.push("a number");
+    if (/[^a-zA-Z0-9]/.test(pwd)) strength++; else suggestions.push("a special character");
+
+    var strengthText = '';
+    var color = '';
+    if (!pwd) {
+      strengthText = '';
+      color = '';
+    } else if (strength <= 3) {
+      strengthText = 'Weak';
+      color = 'red';
+    } else if (strength === 4) {
+      strengthText = 'Medium';
+      color = 'orange';
+    } else if (strength >= 5) {
+      strengthText = 'Strong';
+      color = 'green';
+    }
+
+    return {
+      score: strength,
+      isAcceptable: strength === 5, //Strong
+      text: strengthText,
+      color: color,
+      suggestions: suggestions
+    };
+  }
+
+  // Update strength/suggestions and button state on keyup
+  $(document).on('keyup', passwordFields.join(','), function() {
+    var $field = $(this);
+    var val = $field.val();
+        var $wrapper = $field.closest('.password-wrapper').next('.password-meter-wrapper');
+    var result = checkPasswordStrength(val);
+
+    $wrapper.find('.password-strength').text(result.text).css('color', result.color);
+    if (!result.isAcceptable && val) {
+      $wrapper.find('.password-suggestions').html("Add " + result.suggestions.join(', '));
+    } else {
+      $wrapper.find('.password-suggestions').html('');
+    }
+
+    // Disable/enable Next button (customer_password logic)
+    if (result.score <= 4) {
+      $('#next-step').prop('disabled', true);
+    } else {
+      $('#next-step').prop('disabled', false);
+    }
+
+    // ---------- ADD THIS BLOCK FOR account_btn and #passwd ----------
+    // Only enable #account_btn if #passwd is strong
+    var passwdVal = $('#passwd').val();
+    var passwdStrength = checkPasswordStrength(passwdVal);
+    if (passwdStrength.score === 5) {
+      $('#account_btn').prop('disabled', false);
+    } else {
+      $('#account_btn').prop('disabled', true);
+    }
+    // ---------------------------------------------------------------
+  });
+
+  // Initial state: disable Next if password is empty or weak
+  var initialPwdVal = $('#customer_password').val() || $('#passwd').val() || '';
+  var initialResult = checkPasswordStrength(initialPwdVal);
+  if (initialResult.score <= 4) {
+    $('#next-step').prop('disabled', true);
+  }
+
+  // Initial state: disable account_btn if #passwd is not strong
+  var initialPasswdVal = $('#passwd').val() || '';
+  var initialPasswdResult = checkPasswordStrength(initialPasswdVal);
+  if (initialPasswdResult.score === 5) {
+    $('#account_btn').prop('disabled', false);
+  } else {
+    $('#account_btn').prop('disabled', true);
+  }
+
+  // Hide error on change
+  $(document).on('input', passwordFields.join(','), function() {
+    var $field = $(this);
+    $field.closest('.form-group').find('.error-message').hide().text('');
+    $field.closest('.form-group').removeClass('has-error');
+  });
+});
+/*
+$(document).ready(function() {
+  // Utility to show error message for a field
+  function showError($field, message) {
+    $field.closest('.form-group').addClass('has-error');
+    $field.closest('.form-group').find('.error-message').text(message).show();
+  }
+  // Utility to hide error for a field
+  function hideError($field) {
+    $field.closest('.form-group').removeClass('has-error');
+    $field.closest('.form-group').find('.error-message').hide().text('');
+  }
+
+  // Validate Step 1
+  function validateStep1() {
+    var valid = true;
+
+    // Gender (radio group)
+    if ($('input[name="id_gender"]:checked').length === 0) {
+      $('#id_gender').addClass('has-error');
+      if ($('#id_gender .error-message').length === 0) {
+        $('#id_gender').append('<div class="error-message" style="color:red;display:block;"></div>');
+      }
+      $('#id_gender .error-message').text('Please select a title').show();
+      valid = false;
+    } else {
+      $('#id_gender').removeClass('has-error');
+      $('#id_gender .error-message').hide().text('');
+    }
+
+    // All other required fields in step 1
+    $('#step-1').find('input,select,textarea').each(function() {
+      var $field = $(this);
+
+      // Skip radios, handled above
+      if ($field.attr('type') === 'radio') return;
+
+      // Privacy checkbox
+      if ($field.attr('type') === 'checkbox' && $field.prop('required')) {
+        if (!$field.prop('checked')) {
+          showError($field, 'This box must be checked');
+          valid = false;
+        } else {
+          hideError($field);
+        }
+        return;
+      }
+
+      // Normal required fields, including phone
+      if ($field.prop('required') && !$field.val()) {
+        showError($field, 'This field is required');
+        valid = false;
+      } else {
+        hideError($field);
+      }
+    });
+
+    return valid;
+  }
+
+  // Validate Step 2 (all required fields, including selects)
+  function validateStep2() {
+    var valid = true;
+    $('#step-2').find('input,select,textarea').each(function() {
+      var $field = $(this);
+
+      // Normal required fields (skip hidden fields)
+      if ($field.prop('required') && $field.is(':visible') && !$field.val()) {
+        showError($field, 'This field is required');
+        valid = false;
+      } else {
+        hideError($field);
+      }
+    });
+    return valid;
+  }
+
+  // Next button logic
+  $('#next-step').click(function() {
+    if (validateStep1()) {
+      $('#step-1').hide();
+      $('#step-2').show();
+      $('#prev-step').hide();
+      $('html,body').animate({ scrollTop: $('#step-2').offset().top }, 'fast');
+    }
+  });
+
+  // Back button logic (on both steps)
+  $('#prev-step, #prev-step2').click(function() {
+    $('#step-2').hide();
+    $('#step-1').show();
+    $('#prev-step').hide(); // Hide back on step 1
+    $('html,body').animate({ scrollTop: $('#step-1').offset().top }, 'fast');
+  });
+
+  // Show back button only on step 2 (optional, depends on your UX)
+  $('#customer-form').on('showStep2', function() {
+    $('#prev-step').show();
+  });
+
+  $(document).on('showStep2', function() {
+    $('#prev-step').show();
+  });
+
+  // Validate both steps before submit
+  $('#customer-form').on('submit', function(e) {
+    var valid1 = validateStep1();
+    var valid2 = validateStep2();
+    if (!(valid1 && valid2)) {
+      // Show step 1 if that's the problem, otherwise step 2
+      if (!valid1) {
+        $('#step-2').hide();
+        $('#step-1').show();
+        $('#prev-step').hide();
+      } else if (!valid2) {
+        $('#step-1').hide();
+        $('#step-2').show();
+        $('#prev-step').show();
+      }
+      e.preventDefault();
+      return false;
+    }
+    return true;
+  });
+
+  // Remove error class on input/select/textarea change
+  $('#customer-form').on('change keyup', 'input,select,textarea', function() {
+    var $field = $(this);
+    hideError($field);
+
+    // Special for gender radios
+    if ($field.attr('type') === 'radio' && $field.attr('name') === 'id_gender') {
+      if ($('input[name="id_gender"]:checked').length) {
+        $('#id_gender').removeClass('has-error');
+        $('#id_gender .error-message').hide().text('');
+      }
+    }
+    // Special for privacy checkbox
+    if ($field.attr('type') === 'checkbox' && $field.attr('name') === 'customer_privacy') {
+      if ($field.prop('checked')) {
+        hideError($field);
+      }
+    }
+  });
+});
+*/
+$(document).ready(function() {
+  // Utility to show error message for a field
+  function showError($field, message) {
+    $field.closest('.form-group').addClass('has-error');
+    $field.closest('.form-group').find('.error-message').text(message).show();
+  }
+  // Utility to hide error for a field
+  function hideError($field) {
+    $field.closest('.form-group').removeClass('has-error');
+    $field.closest('.form-group').find('.error-message').hide().text('');
+  }
+
+  // Custom validators
+  function isAlpha(val) {
+    return /^[A-Za-z]+$/.test(val);
+  }
+  function isAlphaOrSpace(val) {
+    return /^[A-Za-z\s]+$/.test(val);
+  }
+  function isValidEmail(val) {
+    // Simple email regex; for stricter use RFC 5322 or a library
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  }
+
+  // Validate Step 1
+  function validateStep1() {
+    var valid = true;
+
+    // Gender (radio group)
+    if ($('input[name="id_gender"]:checked').length === 0) {
+      $('#id_gender').addClass('has-error');
+      if ($('#id_gender .error-message').length === 0) {
+        $('#id_gender').append('<div class="error-message" style="color:red;display:block;"></div>');
+      }
+      $('#id_gender .error-message').text('Please select a title').show();
+      valid = false;
+    } else {
+      $('#id_gender').removeClass('has-error');
+      $('#id_gender .error-message').hide().text('');
+    }
+
+    // All other required fields in step 1
+    $('#step-1').find('input,select,textarea').each(function() {
+      var $field = $(this);
+
+      // Skip radios, handled above
+      if ($field.attr('type') === 'radio') return;
+
+      // Privacy checkbox
+      if ($field.attr('type') === 'checkbox' && $field.prop('required')) {
+        if (!$field.prop('checked')) {
+          showError($field, 'This box must be checked');
+          valid = false;
+        } else {
+          hideError($field);
+        }
+        return;
+      }
+
+      // Normal required fields, including phone
+      if ($field.prop('required') && !$field.val()) {
+        showError($field, 'This field is required');
+        valid = false;
+      } else {
+        hideError($field);
+      }
+
+      // ---- CUSTOM VALIDATION ----
+      // First name - only alphabetic
+      if ($field.attr('name') === 'firstname' && $field.val()) {
+        if (!isAlpha($field.val())) {
+          showError($field, 'First name must contain only letters');
+          valid = false;
+        }
+      }
+      // Last name - only alphabetic
+      if ($field.attr('name') === 'lastname' && $field.val()) {
+        if (!isAlpha($field.val())) {
+          showError($field, 'Last name must contain only letters');
+          valid = false;
+        }
+      }
+      // Email - must match email format
+      if ($field.attr('type') === 'email' && $field.val()) {
+        if (!isValidEmail($field.val())) {
+          showError($field, 'Please enter a valid email address');
+          valid = false;
+        }
+      }
+      // ---------------------------
+    });
+
+    return valid;
+  }
+
+  // Validate Step 2 (all required fields, including selects)
+  function validateStep2() {
+    var valid = true;
+    $('#step-2').find('input,select,textarea').each(function() {
+      var $field = $(this);
+
+      // Normal required fields (skip hidden fields)
+      if ($field.prop('required') && $field.is(':visible') && !$field.val()) {
+        showError($field, 'This field is required');
+        valid = false;
+      } else {
+        hideError($field);
+      }
+
+      // ---- CUSTOM VALIDATION ----
+      // City - only alphabetic and spaces
+      if ($field.attr('name') === 'city' && $field.val()) {
+        if (!isAlphaOrSpace($field.val())) {
+          showError($field, 'City must contain only letters');
+          valid = false;
+        }
+      }
+      // ---------------------------
+    });
+    return valid;
+  }
+
+  // Next button logic
+  $('#next-step').click(function() {
+    if (validateStep1()) {
+      $('#step-1').hide();
+      $('#step-2').show();
+      $('#prev-step').hide();
+      $('html,body').animate({ scrollTop: $('#step-2').offset().top }, 'fast');
+    }
+  });
+
+  // Back button logic (on both steps)
+  $('#prev-step, #prev-step2').click(function() {
+    $('#step-2').hide();
+    $('#step-1').show();
+    $('#prev-step').hide(); // Hide back on step 1
+    $('html,body').animate({ scrollTop: $('#step-1').offset().top }, 'fast');
+  });
+
+  // Show back button only on step 2 (optional, depends on your UX)
+  $('#customer-form').on('showStep2', function() {
+    $('#prev-step').show();
+  });
+
+  $(document).on('showStep2', function() {
+    $('#prev-step').show();
+  });
+
+  // Validate both steps before submit
+  $('#customer-form').on('submit', function(e) {
+    var valid1 = validateStep1();
+    var valid2 = validateStep2();
+    if (!(valid1 && valid2)) {
+      // Show step 1 if that's the problem, otherwise step 2
+      if (!valid1) {
+        $('#step-2').hide();
+        $('#step-1').show();
+        $('#prev-step').hide();
+      } else if (!valid2) {
+        $('#step-1').hide();
+        $('#step-2').show();
+        $('#prev-step').show();
+      }
+      e.preventDefault();
+      return false;
+    }
+    return true;
+  });
+
+  // Remove error class on input/select/textarea change
+  $('#customer-form').on('change keyup', 'input,select,textarea', function() {
+    var $field = $(this);
+    hideError($field);
+
+    // Special for gender radios
+    if ($field.attr('type') === 'radio' && $field.attr('name') === 'id_gender') {
+      if ($('input[name="id_gender"]:checked').length) {
+        $('#id_gender').removeClass('has-error');
+        $('#id_gender .error-message').hide().text('');
+      }
+    }
+    // Special for privacy checkbox
+    if ($field.attr('type') === 'checkbox' && $field.attr('name') === 'customer_privacy') {
+      if ($field.prop('checked')) {
+        hideError($field);
+      }
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const phoneInput = document.querySelector("#mp_seller_phone");
+  const countryCodeInput = document.querySelector("#country_code");
+
+  if (phoneInput) {
+    const iti = window.intlTelInput(phoneInput, {
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+    });
+
+    function updateCountryCode() {
+      const countryData = iti.getSelectedCountryData();
+      if (countryData && countryCodeInput) {
+        countryCodeInput.value = countryData.dialCode || "";
+      }
+    }
+
+    // Set initial value on load
+    updateCountryCode();
+
+    // Update on country change
+    phoneInput.addEventListener("countrychange", updateCountryCode);
+  }
+});
+</script>
+<div class="container mt-3 mb-3">
+{if isset($success) && $success}
+  <div class="alert alert-success" role="alert" style="margin:10px auto;max-width:500px;">
+    {$success}
+  </div>
+{/if}
+
+{if isset($error) && $error}
+  <div class="alert alert-danger" role="alert" style="margin:10px auto;max-width:500px;">
+    {$error}
+  </div>
+{/if}
+
+  <div class="row" style="height: auto; display: flex; align-items: center; justify-content: center;">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 form-reg">
+      <!-- Tabs -->
+		 <ul class="nav nav-tabs" id="registerTabs" role="tablist">
+		  <li role="presentation" class="active">
+			<a href="#buyer" class="buyer_register_tab" aria-controls="buyer" role="tab" data-toggle="tab">Register as buyer</a>
+		  </li>
+		  <li role="presentation">
+			<a href="#seller" class="seller_register_tab" aria-controls="seller" role="tab" data-toggle="tab">Register as seller</a>
+		  </li>
+		</ul>
+      <!-- Tab content -->
+      <div class="tab-content" id="registerTabsContent">
+        <!-- Buyer Form -->       
+		<div role="tabpanel" class="card tab-pane active" id="buyer">    			
+			<form action="" id="customer-form" class="js-customer-form" method="post" enctype="multipart/form-data" autocomplete="off" >
+			  <!-- Step 1: Basic Info -->
+			  <div id="step-1" class="multistep-step">
+				<h3 class="text-center" style="margin-bottom:25px;">
+				  <button type="button" class="btn" id="prev-step" style="display:none;float:left;background-color:#006884;color:white;margin-right:10px;">
+					&larr; {l s='Back'}
+				  </button>
+				  {l s='Create a Buyer Account'}
+				</h3>
+				<div class="form-group">
+				  <label class="control-label" for="id_gender">{l s='Title' d='Shop.Forms.Labels'}</label>
+				  <div id="id_gender" class="" style="border:none;box-shadow:none;padding:0;">
+					{foreach from=$genders item=gender}
+					  <div class="form-check" style="display:inline-block;margin-right:15px;">
+						<input class="form-check-input" type="radio" name="id_gender" id="id_gender_{$gender->id|escape:'htmlall':'UTF-8'}" value="{$gender->id|escape:'htmlall':'UTF-8'}"
+						  {if isset($smarty.post.id_gender) && $smarty.post.id_gender==$gender->id}checked="checked"{/if} required>
+						<label class="form-check-label" for="id_gender_{$gender->id|escape:'htmlall':'UTF-8'}">
+						  {$gender->name|escape:'htmlall':'UTF-8'}
+						</label>
+					  </div>
+					{/foreach}
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label" for="firstname">
+					<span class="mand_field">*</span> {l s='First name' d='Shop.Forms.Labels'}
+				  </label>
+				  <input type="text" class="form-control" name="firstname" id="customer_firstname" value="{$smarty.post.firstname|escape:'htmlall':'UTF-8'}" required autocomplete="given-name" />
+				  <div class="error-message mt-1" style="display:none;color:red;"></div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label" for="lastname">
+					<span class="mand_field">*</span> {l s='Last name' d='Shop.Forms.Labels'}
+				  </label>
+				  <input type="text" class="form-control" name="lastname" id="customer_lastname" value="{$smarty.post.lastname|escape:'htmlall':'UTF-8'}" required autocomplete="family-name" />
+				  <div class="error-message mt-1" style="display:none;color:red;"></div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label" for="email">
+					<span class="mand_field">*</span> {l s='Email' d='Shop.Forms.Labels'}
+				  </label>
+				  <input type="email" class="form-control" name="email" id="customer_email" value="{$smarty.post.email|escape:'htmlall':'UTF-8'}" required autocomplete="email" />
+				  <div class="error-message mt-1" style="display:none;color:red;"></div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label" for="password">
+					<span class="mand_field">*</span> {l s='Password' d='Shop.Forms.Labels'}
+				  </label>
+				  <input type="password" class="form-control" name="password" id="customer_password" required autocomplete="new-password" />
+				  <div class="error-message mt-1" style="display:none;color:red;"></div>
+				</div>
+				<div class="form-group">
+				  <label
+					class="field_label"
+					style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};"
+					for="mp_seller_phone">
+					<span class="field_heading">
+					  <span class="mand_field">*</span>
+					  {l s='Phone' mod='marketplace'}
+					</span>
+				  </label>
+				  <input
+					type="tel"
+					class="form-control"
+					name="mp_seller_phone"
+					id="mp_seller_phone_buyer"
+					maxlength="{$max_phone_digit|escape:'htmlall':'UTF-8'}"
+					value="{if isset($smarty.post.mp_seller_phone)}{$smarty.post.mp_seller_phone|trim}{/if}"
+					required
+				  >
+				  <input type="hidden" name="country_code" value="" name="type">
+				  <div class="error-message mt-1" id="error-msg" style="display:none;color:red;"></div>
+				</div>
+				<div class="form-group">
+				  <label>
+					<input type="checkbox" name="customer_privacy" id="customer_privacy" required /> {l s='I agree to the terms and conditions and the privacy policy.' d='Shop.Forms.Labels'}
+				  </label>
+				  <div class="error-message mt-1" style="display:none;color:red;"></div>
+				</div>
+				{hook h='displayGDPRConsent' mod='psgdpr'}
+				<div style="display: flex;justify-content: center;"><button type="button" class="btn btn-custom btn-block" id="next-step">{l s='Next'}</button></div>
+				<p class="text-center" style="margin-top:18px;">Already have an account? <a href="login" style="color: #026D8F;">Log in</a></p>
+			  </div>
+
+			  <!-- Step 2: Address Info -->
+			  <div id="step-2" class="multistep-step" style="display:none;">
+				<h3 class="text-center form_info" style="margin-bottom:25px;">
+					<img class="back_arrow" id="prev-step2" src="/img/Back_Arrow.svg" />
+				  {l s='Create a Buyer Account'} 
+				</h3>
+				<div class="form-group">
+				  <label class="control-label" for="address">
+					<span class="mand_field">*</span> {l s='Address' d='Shop.Forms.Labels'}
+				  </label>
+				  <input type="text" class="form-control" name="address" id="customer_address" value="{$smarty.post.address|escape:'htmlall':'UTF-8'}" required autocomplete="street-address" />
+				  <div class="error-message mt-1" style="display:none;color:red;"></div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label" for="city">
+					<span class="mand_field">*</span> {l s='City' d='Shop.Forms.Labels'}
+				  </label>
+				  <input type="text" class="form-control" name="city" id="customer_city" value="{$smarty.post.city|escape:'htmlall':'UTF-8'}" required autocomplete="address-level2" />
+				  <div class="error-message mt-1" style="display:none;color:red;"></div>
+				</div>
+				{*<div class="form-group">
+				  <label class="control-label" for="country">
+					<span class="mand_field">*</span> {l s='Country' d='Shop.Forms.Labels'}
+				  </label>	
+					 <input type="text" class="form-control" name="country" id="customer_country" value="{$smarty.post.country|escape:'htmlall':'UTF-8'}" required autocomplete="address-level2" />
+				</div> *}
+				<div class="form-group">
+				  <label class="control-label" for="customer_country">
+					<span class="mand_field">*</span> {l s='Country' d='Shop.Forms.Labels'}
+				  </label>
+				  <select class="form-control" name="country" id="customer_country" required autocomplete="country">
+					<option value="">{l s='Select a country' d='Shop.Forms.Labels'}</option>
+					{foreach from=$countries item=country}
+					  <option value="{$country.id_country}" {if $smarty.post.country == $country.id_country}selected{/if}>
+						{$country.name|escape:'htmlall':'UTF-8'}
+					  </option>
+					{/foreach}
+				  </select>
+				  <div class="error-message mt-1" style="display:none;color:red;"></div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label" for="zipcode">
+					<span class="mand_field">*</span> {l s='Zip Code' d='Shop.Forms.Labels'}
+				  </label>
+				  <input type="text" class="form-control" name="zipcode" id="customer_zipcode" value="{$smarty.post.zipcode|escape:'htmlall':'UTF-8'}" required autocomplete="postal-code" />
+				  <div class="error-message mt-1" style="display:none;color:red;"></div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label" for="vat_number">
+					{l s='VAT Number' d='Shop.Forms.Labels'}
+				  </label>
+				  <input type="text" class="form-control" name="vat_number" id="customer_vat_number" value="{$smarty.post.vat_number|escape:'htmlall':'UTF-8'}" autocomplete="vat-number" />
+				</div>
+				<div class="form-group Upload_file">
+					 <label for="customer_file">Buyer Upload - 1</label>					
+					<input type="file" name="extra_field_file" id="extra_field_file" accept=".pdf,.jpg,.jpeg,.png,.gif">
+					<div class="error-message mt-1" style="display:none;color:red;"></div>
+				</div>
+				<div class="form-group Upload_file">
+					 <label for="customer_file">Buyer Upload - 2</label>					
+					<input type="file" name="extra_field_file_2" id="extra_field_file_2" accept=".pdf,.jpg,.jpeg,.png,.gif">
+					<div class="error-message mt-1" style="display:none;color:red;"></div>
+				</div>
+				<input type="hidden" value="buyerRegisteration" name="type">
+				<div class="form-group" style="display: flex;justify-content: center;">
+				  <button type="submit" class="btn btn-custom btn-block" name="buyerRegisteration">{l s='Confirm  Registration' d='Shop.Theme.Actions'}</button>
+				</div>
+				<p class="text-center" style="margin-top:18px;">Already have an account? <a href="login" style="color: #026D8F;">Log in</a></p>
+			  </div>
+			</form>			
+        </div>
+        <!-- Seller Form -->
+        <div role="tabpanel" class="tab-pane" id="seller">
+         {* --- Registration block configuration --- *}
+			<div class="card clearfix clear-both banner_block"> 
+					<div> <h5 class="text-center seller_title">Create a Seller Account</h5></div>
+				<div class="container seller-form">
+					<div class="col-sm-12">
+						{foreach from=$value['sub_block'] key=sub_k item=sub_v}
+							{if $sub_v['block_name'] == 'reg_title'}
+								<div class="col-sm-{$sub_v['width']|escape:'htmlall':'UTF-8'}">
+									<p style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'}" class="title_style">{if $sub_v['data']}{$sub_v['data']['content']|escape:'htmlall':'UTF-8'}{/if}</p>
+								</div>
+							{/if}
+							{if $sub_v['block_name'] == 'reg_block'}
+								<div class="col-sm-{$sub_v['width']|escape:'htmlall':'UTF-8'}">
+								{if empty($wk_seller_request_pending)}
+									<form method="POST" action="{$link->getModuleLink('marketplace', 'sellerlogin')|escape:'htmlall':'UTF-8'}" class="defaultForm form-horizontal" enctype="multipart/form-data" id="mp_register_form">
+										<input type="hidden" name="ps_customer_id" value="{if isset($wk_customer_id)}{$wk_customer_id|escape:'htmlall':'UTF-8'}{/if}" id="ps_customer_id">
+										<input type="hidden" name="idSeller" value="" id="idSeller">
+										<div class="col-sm-12 form_wrapper" id="form_acc_info" style="background-color: {$sub_v['block_bg_color']|escape:'htmlall':'UTF-8'}; color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};{if isset($wk_customer_logged)}display:none;{else}display:block;{/if}">
+											<hr class="hr_style">
+
+											{hook h="displayMpBeforeAccountInfoField"}
+
+											<label class="field_label" style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+												<span class="field_heading">{l s='Title' mod='marketplace'}</span>
+												<div class="">
+													{foreach from=$genders key=k item=gender}
+														<label class="radio-inline" for="id_gender{$gender->id|escape:'htmlall':'UTF-8'}">
+															<span class="custom-radio">
+															<input name="id_gender" id="id_gender{$gender->id|escape:'htmlall':'UTF-8'}" type="radio"
+																value="{$gender->id|escape:'htmlall':'UTF-8'}" {if isset($smarty.post.id_gender) &&
+																$smarty.post.id_gender==$gender->id}checked="checked"
+															{/if}>
+															<span></span>
+															</span>
+															{$gender->name|escape:'htmlall':'UTF-8'}
+														</label>
+													{/foreach}
+												</div>
+											</label>
+											<label class="field_label" style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+												<span class="field_heading"><span class="mand_field">*</span> {l s='First name' mod='marketplace'}</span>
+												<input type="text" class="form-control" name="firstname" id="firstname" value="{if isset($smarty.post.firstname)}{$smarty.post.firstname|trim|escape:'htmlall':'UTF-8'}{/if}">
+											</label>
+											<label class="field_label" style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+												<span class="field_heading"><span class="mand_field">*</span> {l s='Last name' mod='marketplace'}</span>
+												<input type="text" class="form-control" name="lastname" id="lastname" value="{if isset($smarty.post.lastname)}{$smarty.post.lastname|trim|escape:'htmlall':'UTF-8'}{/if}">
+											</label>
+											<label class="field_label" style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+												<span class="field_heading"><span class="mand_field">*</span> {l s='Email' mod='marketplace'}</span>
+												<input type="email" class="form-control" name="email" id="email" value="{if isset($smarty.post.email)}{$smarty.post.email|trim|escape:'htmlall':'UTF-8'}{else}{if isset($wk_email)}{$wk_email|escape:'htmlall':'UTF-8'}{/if}{/if}" required>
+											</label>
+											 <label class="field_label" style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+												<span class="field_heading"><span class="mand_field">*</span> {l s='Password' mod='marketplace'}</span>
+												<input type="password" class="form-control" name="passwd" id="passwd" value="{if isset($smarty.post.passwd)}{$smarty.post.passwd|trim|escape:'htmlall':'UTF-8'}{/if}">
+												<div class="error-message" style="color:red; display:none;"></div>
+											</label> 
+				
+											<div class="check_email" style="{if isset($wk_customer_logged)}display:block;{else}display:none;{/if}">
+												<span class="email_notify">{l s='This email is already registered as customer, if you want to continue with same Email-Id then enter password and' mod='marketplace'} <span id="wk-shop-form">{l s='click here' mod='marketplace'}</span></span>
+											</div>
+
+											{hook h="displayMpAfterAccountInfoField"}
+
+											<div class="mp_error_block login_act_err">
+												<span class="mp_error"></span>
+											</div>
+											<div Class="seller_button text-center"><button type="button" class="btn btn-success form_button" id="account_btn"
+											style="{if isset($themeConf['account_btn_bg_color'])}background-color:{$themeConf['account_btn_bg_color']|escape:'htmlall':'UTF-8'};{/if}color:#fff;border-color:transparent;">
+												{l s='Next' mod='marketplace'}</button></div>
+												 <div class="error-message mt-1" style="display:none;color:red;"></div>
+											 <p class="text-center" style="margin-top:18px;">Already have an account? <a href="login"style="color: #026D8F;">Log in</a></p>	
+										</div>
+										<div class="col-sm-12 form_wrapper" id="form_shop_info" style="background-color: {$sub_v['block_bg_color']|escape:'htmlall':'UTF-8'}; color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};{if isset($wk_customer_logged)}display:block;{else}display:none;{/if}">
+											<img src="/img/Back_Arrow.svg"id="back_account" alt="Back" style="position: relative; bottom: 30px;">
+											<p class="text-left margin-top-10 form_heading" style="display: none;"><strong>{l s='Create your shop' mod='marketplace'}</strong></p>
+
+											{hook h="displayMpBeforeShopInfoField"}
+
+											<input type="hidden" name="multi_lang" id="multi_lang" value="{$multi_lang|escape:'htmlall':'UTF-8'}">
+											<input type="hidden" name="current_lang" id="current_lang" value="{$current_lang.id_lang|escape:'htmlall':'UTF-8'}">
+											<label class="field_label" style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+												{l s='Default language' mod='marketplace'}
+													{* <select class="form-control" name="seller_default_lang" id="seller_default_lang">
+						  						{foreach from=$languages item=language}
+													<option data-lang-iso="{$language.iso_code|escape:'htmlall':'UTF-8'}"
+													value="{$language.id_lang|escape:'htmlall':'UTF-8'}"
+													{if isset($smarty.post.seller_default_lang)}
+														{if $smarty.post.seller_default_lang == $language.id_lang}Selected="Selected"
+														{/if}
+													{else}
+														{if $current_lang.id_lang == $language.id_lang}Selected="Selected"
+														{/if}
+													{/if}>
+													{$language.name|escape:'htmlall':'UTF-8'}
+													</option>
+												{/foreach}
+													</select> *}
+													<select class="form-control" name="seller_default_lang" id="seller_default_lang">
+														{foreach from=$languages item=language}
+															<option data-lang-iso="{$language.iso_code|escape:'htmlall':'UTF-8'}"
+																	value="{$language.id_lang|escape:'htmlall':'UTF-8'}"
+																{if isset($smarty.post.seller_default_lang)}
+																	{if $smarty.post.seller_default_lang == $language.id_lang}selected="selected"{/if}
+																{else}
+																	{if $language.id_lang == 2}selected="selected"{/if}
+																{/if}>
+																{$language.name|escape:'htmlall':'UTF-8'}
+															</option>
+														{/foreach}
+													</select>
+											</label>
+											<label class="field_label" style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+												<span class="field_heading"><span class="mand_field">*</span> {l s='Unique Shop Name' mod='marketplace'}</span>
+												<input type="text" class="form-control" name="mp_shop_name_unique" id="mp_shop_name_unique" value="{if isset($smarty.post.mp_shop_name_unique)}{$smarty.post.mp_shop_name_unique|trim|escape:'htmlall':'UTF-8'}{/if}"id="mp_shop_name_unique" autocomplete="off">
+											</label>
+											<label class="field_label" style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+												<span class="field_heading">
+													<span class="mand_field">*</span>
+													{l s='Shop name' mod='marketplace'}
+												</span>
+												<div class="row">
+														{if $allow_multilang && $total_languages > 1}
+														<div class="col-md-9">
+													{else}
+														<div class="col-md-12">
+													{/if}
+														{foreach from=$languages item=language}
+															{assign var="mp_shop_name_lang" value="mp_shop_name_`$language.id_lang`"}
+															<input type="text" class="form-control shop_name_all {if $current_lang.id_lang == $language.id_lang}seller_default_shop{/if}" name="mp_shop_name_{$language.id_lang|escape:'htmlall':'UTF-8'}" id="mp_shop_name_{$language.id_lang|escape:'htmlall':'UTF-8'}" value="{if isset($smarty.post.$mp_shop_name_lang)}{$smarty.post.$mp_shop_name_lang|trim}{/if}"
+															data-lang-name="{$language.name|escape:'htmlall':'UTF-8'}"
+															{if $current_lang.id_lang != $language.id_lang}style="display:none;"{/if} />
+														{/foreach}
+													</div>
+													 {if $allow_multilang && $total_languages > 1}
+													<div class="col-md-3">
+														<button type="button" id="shop_name_lang_btn" class="btn btn-default dropdown-toggle lang_padding" data-toggle="dropdown">
+														{$current_lang.iso_code|escape:'htmlall':'UTF-8'}														
+														</button>
+														<ul class="dropdown-menu dropdown-menu-right">
+															{foreach from=$languages item=language}
+															<li>
+																<a href="javascript:void(0)" onclick="showLangField('{$language.iso_code|escape:'htmlall':'UTF-8'}', {$language.id_lang|escape:'htmlall':'UTF-8'});">{$language.name|escape:'htmlall':'UTF-8'}</a>
+															</li>
+															{/foreach}
+														</ul>
+													</div>
+													{/if} 
+												</div>
+											</label>
+											<label class="field_label" style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+												<span class="field_heading"><span class="mand_field">*</span> {l s='Business Email' mod='marketplace'}</span>
+												<input type="text" class="form-control" name="mp_seller_email" id="mp_seller_email" value="{if isset($smarty.post.mp_seller_email)}{$smarty.post.mp_seller_email|trim}{else}{if isset($wk_email)}{$wk_email|escape:'htmlall':'UTF-8'}{/if}{/if}" required>
+											</label>
+											{if $MP_SELLER_COUNTRY_NEED}
+												{if isset($wk_countries)}
+													<label class="field_label" style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+														<span class="field_heading">
+															<span class="mand_field">*</span>
+															{l s='Country' mod='marketplace'}
+														</span>
+								  						<select class="form-control" name="seller_country" id="seller_country">
+								  							{foreach $wk_countries as $country}
+																{if isset($smarty.post.seller_country) && $country.id_country == $smarty.post.seller_country}
+							  										<option value="{$country.id_country|escape:'htmlall':'UTF-8'}" Selected>{$country.name|escape:'htmlall':'UTF-8'}</option>
+																  {else}
+																  	<option value="{$country.id_country|escape:'htmlall':'UTF-8'}">{$country.name|escape:'htmlall':'UTF-8'}</option>
+																{/if}
+								  							{/foreach}
+								  						</select>
+													</label>
+												{/if}
+												{if isset($smarty.post.seller_country) && !empty($smarty.post.seller_country)}
+													{assign var=firstCountry value=$wk_countries[$smarty.post.seller_country]}
+												{else}
+													{assign var=firstCountry value=$wk_countries|@current}
+												{/if}
+												<label class="field_label" id="sellerStateCont" style="{if !isset($firstCountry.states)}display:none;{/if} color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+													<span class="mand_field">*</span>
+													{l s='State' mod='marketplace'}
+							  						<select class="form-control" name="seller_state" id="seller_state">
+							  							<option value="0">{l s='Select state' mod='marketplace'}</option>
+														{if isset($firstCountry.states)}
+															{foreach $firstCountry.states as $state}
+							  									{if isset($smarty.post.seller_state) && $state.id_state == $smarty.post.seller_state}
+							  										<option value="{$state.id_state|escape:'htmlall':'UTF-8'}" Selected>{$state.name|escape:'htmlall':'UTF-8'}</option>
+																  {else}
+																  	<option value="{$state.id_state|escape:'htmlall':'UTF-8'}">{$state.name|escape:'htmlall':'UTF-8'}</option>
+																{/if}
+															{/foreach}
+														{/if}
+							  						</select>
+													<input type="hidden" name="state_avl" id="state_avl" value="{if !isset($firstCountry.states)}0{else}1{/if}"/>
+												</label>
+												<label class="field_label" style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+													<span class="field_heading"><span class="mand_field">*</span> {l s='City' mod='marketplace'}</span>
+													<input type="text" class="form-control" name="seller_city" id="seller_city" value="{if isset($smarty.post.seller_city)}{$smarty.post.seller_city|trim|escape:'htmlall':'UTF-8'}{/if}">
+												</label>
+												<label class="field_label" style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+													<span class="field_heading">
+														<span class="mand_field">*</span>
+														{l s='Zip/postal code' mod='marketplace'}
+													</span>
+													<input type="text" class="form-control" name="seller_postcode" id="seller_postcode" value="{if isset($smarty.post.seller_postcode)}{$smarty.post.seller_postcode|trim|escape:'htmlall':'UTF-8'}{/if}" required>
+												</label>
+											{/if}
+											 <label
+												class="field_label"
+												style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};"
+												for="mp_seller_phone"
+											  >
+												<span class="field_heading">
+												  <span class="mand_field">*</span>
+												  {l s='Phone' mod='marketplace'}
+												</span>
+											  </label>
+											  <input
+												type="tel"
+												class="form-control"
+												name="mp_seller_phone"
+												id="mp_seller_phone"
+												maxlength="{$max_phone_digit|escape:'htmlall':'UTF-8'}"
+												value="{if isset($smarty.post.mp_seller_phone)}{$smarty.post.mp_seller_phone|trim}{/if}"
+												required
+											  >
+											 <input type="hidden" id="country_code" name="country_code" value="">
+											  <div class="error-message mt-1" id="error-msg" style="display:none;color:red;"></div>
+											{if $terms_and_condition_active}
+												<label class="field_label" style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+													<input type="checkbox" required name="terms_and_conditions" id="terms_and_conditions" />
+													<span>
+														{l s='I agree to the' mod='marketplace'}
+														{if isset($linkCmsPageContent)}
+															<a href="{$linkCmsPageContent|escape:'htmlall':'UTF-8'}" class="wk_terms_link">
+																{l s='terms and condition' mod='marketplace'}
+															</a>
+														{else}
+															{l s='terms and condition' mod='marketplace'}
+														{/if}
+														{l s='and will adhere to them unconditionally.' mod='marketplace'}
+													</span>
+												</label>
+												{if isset($linkCmsPageContent)}
+													<div class="modal fade" id="wk_terms_condtion_div" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+														<div class="modal-dialog" role="document">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																		<span aria-hidden="true">&times;</span>
+																	</button>
+																</div>
+																<div id="wk_terms_condtion_content" class="modal-body"></div>
+															</div>
+														</div>
+													</div>
+												{/if}
+											{/if}
+											{hook h="displayMpAfterShopInfoField"}
+											{hook h="displayMpSellerRequestFooter"}
+											{hook h='displayGDPRConsent' mod='psgdpr' id_module=$id_module}
+											<div class="mp_error_block login_shop_err">
+												<span class="mp_error"></span>
+											</div>
+											<div class="Seller_Register" style="text-align: center;"><button type="submit" class="btn btn-success form_button btn_confirm_register" name="registrationform"
+											style="{if isset($themeConf['account_btn_bg_color'])}background-color:{$themeConf['account_btn_bg_color']|escape:'htmlall':'UTF-8'};{/if}color:#fff;border-color:transparent;">
+											{l s='Confirm  Registration' mod='marketplace'}</button> </div>
+											 <p class="text-center" style="margin-top:18px;">Already have an account? <a href="login"style="color: #026D8F;">Log in</a></p>
+										
+									</form>
+								{else}
+									<div class="col-sm-12 form_wrapper" style="background-color: {$sub_v['block_bg_color']|escape:'htmlall':'UTF-8'}; color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};height:320px;">
+										<p class="text-left margin-top-10 form_heading" style="color: {$sub_v['block_text_color']|escape:'htmlall':'UTF-8'};">{l s='Seller Account' mod='marketplace'}</p>
+										<hr class="hr_style">
+										{if isset($mpSellerShopSettings) && $mpSellerShopSettings && isset($shop_approved) && $shop_approved}
+											<div class="alert alert-info wk-seller-request-alert">
+												{l s='Your request has been approved by admin. ' mod='marketplace'}
+												<a title="{l s='Re-Activate Your Shop' mod='marketplace'}" href="{$link->getModuleLink('marketplace', 'editprofile', ['reactivate' => 1])|escape:'htmlall':'UTF-8'}">
+													<button class="btn btn-primary btn-sm">
+														{l s='Re-Activate Your Shop' mod='marketplace'}
+													</button>
+												</a>
+											</div>
+										{else}
+											<div class="alert alert-info wk-seller-request-alert">
+												{l s='Your request has been sent to admin. Please wait the request gets approved by admin' mod='marketplace'}
+											</div>
+										{/if}
+									</div>
+								{/if}
+								</div>
+							{/if}
+						{/foreach}
+					</div>
+				</div>
+			</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+			
+		{/if}
+		{* --- Content block configuration --- *}
+		{if $value['name'] == 'content'}
+			{* --- Feature block configuration --- *}
+			<div class="container" style="clear: both;">
+				<div class="row">
+					{foreach from=$value['sub_block'] key=subc_k item=subc_v}
+						{if $subc_v['block_name'] == 'feature'}
+							<div class="col-sm-{$subc_v['width']|escape:'htmlall':'UTF-8'} ftr_cont" style="background-color: {$subc_v['block_bg_color']|escape:'htmlall':'UTF-8'}; color: {$subc_v['block_text_color']|escape:'htmlall':'UTF-8'};">
+								{if $subc_v['data']}{$subc_v['data']['content'] nofilter}{/if}
+							</div>
+						{/if}
+					{/foreach}
+				</div>
+			</div>
+			{* --- Terms and conditions block --- *}
+			<div class="container" style="clear: both;">
+				<div class="row">
+					{if isset($value['sub_block'])}
+						{foreach from=$value['sub_block'] key=subc_k item=subc_v}
+							{if $subc_v['block_name'] == 'termscondition'}
+								<div class="col-sm-{$subc_v['width']|escape:'htmlall':'UTF-8'} tc_cont" style="background-color: {$subc_v['block_bg_color']|escape:'htmlall':'UTF-8'};">
+									{if $subc_v['data']}{$subc_v['data']['content'] nofilter}{/if}
+								</div>
+								<style>
+									.tc_cont span {
+										color: {$subc_v['block_text_color']|escape:'htmlall':'UTF-8'} !important;
+									}
+								</style>
+							{/if}
+						{/foreach}
+					{/if}
+				</div>
+			</div>
+		{/if}
+	{/foreach}
+{/if}
+{if isset($themeConf['body_bg_color'])}
+	<style type="text/css">
+		body #wrapper {
+			background-color: {$themeConf['body_bg_color']|escape:'htmlall':'UTF-8'};
+			font-family: Arial,sans-serif;
+		}
+	</style>
+{/if}
+{/block}
+{block name="footer"}
+<div class="container">
+  <div class="row">
+    {block name='hook_footer_before'}
+      {hook h='displayFooterBefore'}
+    {/block}
+  </div>
+</div>
+<div class="footer-container">
+  <div class="container">
+    <div class="row">
+      {block name='hook_footer'}
+        {hook h='displayFooter'}
+      {/block}
+    </div>
+    <div class="row">
+      {block name='hook_footer_after'}
+        {hook h='displayFooterAfter'}
+      {/block}
+    </div>
+    
+  </div>
+  <div class="container-fluid copy_right">
+  <div class="row">
+      <div class="col-md-12">
+        <p class="text-sm-center">
+          {block name='copyright_link'}           
+				Copyright by Chemarket - All rights reserved          
+          {/block}
+        </p>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<style>
+.footer-container{
+background-color: #026D8F;
+}
+.footer-container a, .footer-container p, .footer-container span {
+   color: #fff;
+}
+#block_myaccount_infos .myaccount-title a,.footer-container a, .footer-container p, .footer-container span {
+    color: #fff!important;
+}
+#contact-infos {
+    color: #fff;
+}
+.copy_right{
+	background-color: #00506A;
+	padding-top: 16px;
+}
+</style>
+<!-- Password toggle (works for buyer + seller) -->
+<style>
+/* wrapper */
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* input inside wrapper */
+.password-wrapper input {
+  flex: 1;
+  border: 0 !important;
+  outline: 0 !important;
+  padding: 10px 12px;
+  background: transparent !important;
+  box-shadow: none !important;
+  min-height: 40px;
+}
+
+/* strength text if moved into wrapper */
+.password-wrapper .password-strength {
+  margin-left: 6px;
+  font-weight: 700;
+  color: #2fa84f; /* adjust to your theme */
+  white-space: nowrap;
+}
+
+/* toggle button hidden until focus/value */
+.password-wrapper .toggle-password {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 100%;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+/* show on focus OR when wrapper has value class */
+.password-wrapper input:focus ~ .toggle-password,
+.password-wrapper.has-value .toggle-password {
+  display: flex;
+}
+
+.password-wrapper .toggle-password:hover { color: #026D8F; }
+
+/* Chrome autofill fix (white background) */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+  box-shadow: 0 0 0px 1000px #fff inset !important;
+  -webkit-text-fill-color: #000 !important;
+}
+button:focus {
+    outline: none;
+}
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const selectors = [
+    '#customer_password', // buyer
+    '#seller_password',   // seller
+    'form#mp_register_form input[type="password"]',
+    'form#customer-form input[type="password"]'
+  ];
+
+  const inputs = new Set();
+  selectors.forEach(sel => {
+    document.querySelectorAll(sel).forEach(el => inputs.add(el));
+  });
+
+  inputs.forEach(passwordInput => {
+    if (!passwordInput) return;
+
+    // skip if already inside a proper wrapper
+    if (passwordInput.closest('.password-wrapper')) {
+      const existingWrapper = passwordInput.closest('.password-wrapper');
+      if (!existingWrapper.querySelector('.toggle-password')) {
+        createToggle(existingWrapper, passwordInput);
+      }
+      return;
+    }
+
+    // create wrapper
+    const wrapper = document.createElement('div');
+    wrapper.className = 'password-wrapper';
+
+    // insert wrapper before input and move input inside wrapper
+    const parent = passwordInput.parentNode;
+    parent.insertBefore(wrapper, passwordInput);
+    wrapper.appendChild(passwordInput);
+
+    // create the eye toggle
+    createToggle(wrapper, passwordInput);
+
+    // show/hide logic for wrapper based on input value (handles autofill)
+    function refresh() {
+      const has = !!(passwordInput.value && passwordInput.value.trim().length);
+      wrapper.classList.toggle('has-value', has);
+      if (!has && passwordInput.type === 'text') {
+        passwordInput.type = 'password';
+        const ic = wrapper.querySelector('.toggle-password i');
+        if (ic) {
+          ic.classList.remove('fa-eye-slash');
+          ic.classList.add('fa-eye');
+        }
+      }
+    }
+
+    refresh();
+    setTimeout(refresh, 50);
+    setTimeout(refresh, 350);
+
+    ['input','change','keyup','paste','cut']
+      .forEach(ev => passwordInput.addEventListener(ev, refresh));
+  });
+
+  // helper: create eye toggle
+  function createToggle(wrapper, passwordInput) {
+    if (wrapper.querySelector('.toggle-password')) return;
+
+    const eyeBtn = document.createElement('button');
+    eyeBtn.type = 'button';
+    eyeBtn.className = 'toggle-password';
+    eyeBtn.setAttribute('aria-label','Show password');
+    eyeBtn.innerHTML = '<i class="fa-solid fa-eye" aria-hidden="true"></i>';
+    wrapper.appendChild(eyeBtn);
+
+    eyeBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const icon = eyeBtn.querySelector('i');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        if (icon) {
+          icon.classList.remove('fa-eye');
+          icon.classList.add('fa-eye-slash');
+        }
+        eyeBtn.setAttribute('aria-label','Hide password');
+      } else {
+        passwordInput.type = 'password';
+        if (icon) {
+          icon.classList.remove('fa-eye-slash');
+          icon.classList.add('fa-eye');
+        }
+        eyeBtn.setAttribute('aria-label','Show password');
+      }
+      passwordInput.focus();
+    });
+  }
+});
+</script>
+
+
+
+{if isset($error)}
+	<input type="hidden" id="wk_slerror" value="{$error|escape:'htmlall':'UTF-8'}">
+	<div class="error_block">
+		{if $error == 1}
+			{l s='Email is required.' mod='marketplace'}
+		{elseif $error == 2}
+			{l s='Invalid email address.' mod='marketplace'}
+		{elseif $error == 3}
+			{l s='Password is required.' mod='marketplace'}
+		{elseif $error == 4}
+			{l s='Invalid password.' mod='marketplace'}
+		{elseif $error == 5}
+			{l s='Please enter your valid credentials.' mod='marketplace'}
+		{elseif $error == 6}
+			{l s='Your account isn\'t available at this time, please contact us.' mod='marketplace'}
+		{elseif $error == 7}
+			{l s='Authentication failed.' mod='marketplace'}
+		{elseif $error == 8}
+			{l s='Please enter your first name.' mod='marketplace'}
+		{elseif $error == 9}
+			{l s='Please enter your last name.' mod='marketplace'}
+		{elseif $error == 11}
+			{l s='An account using this email address has already been registered.' mod='marketplace'}
+		{elseif $error == 13}
+			{l s='Shop name is required.' mod='marketplace'}
+		{elseif $error == 14}
+			{l s='Please enter valid shop name.' mod='marketplace'}
+		{elseif $error == 15}
+			{l s='Unique shop name already exist.' mod='marketplace'}
+		{elseif $error == 16}
+			{l s='Phone number is required.' mod='marketplace'}
+		{elseif $error == 17}
+			{l s='Please enter valid phone number.' mod='marketplace'}
+		{elseif $error == 18}
+			{l s='Email already exist as seller.' mod='marketplace'}
+		{elseif $error == 19}
+			{l s='Unique shop name is required.' mod='marketplace'}
+		{elseif $error == 20}
+			{l s='Please enter valid unique shop name.' mod='marketplace'}
+		{elseif $error == 21}
+			{l s='Shop name is required in default language.' mod='marketplace'}
+		{elseif $error == 22}
+			{l s='You are not registered as a seller.' mod='marketplace'}
+		{elseif $error == 23}
+			{l s='City is required field.' mod='marketplace'}
+		{elseif $error == 24}
+			{l s='Invalid city name.' mod='marketplace'}
+		{elseif $error == 25}
+			{l s='Country is required field.' mod='marketplace'}
+		{elseif $error == 26}
+			{l s='State is required field.' mod='marketplace'}
+		{elseif $error == 27}
+			{l s='Zip/postal code is required field.' mod='marketplace'}
+		{elseif $error == 28}
+			{l s='Invalid zip/postal code format.' mod='marketplace'}
+		{elseif $error == 29}
+			{l s='Invalid zip/postal code.' mod='marketplace'}
+		{/if}
+	</div>
+{/if}
+{/block}

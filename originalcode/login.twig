@@ -1,0 +1,235 @@
+{**
+ * Copyright since 2007 PrestaShop SA and Contributors
+ * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
+ *
+ * NOTICE OF LICENSE
+ * ...
+ *}
+{block name='login_form'}
+
+  {block name='login_form_errors'}
+    {include file='_partials/form-errors.tpl' errors=$errors['']}
+  {/block}
+
+  <tittle> 
+
+   <div class="brand-logo">
+           <img src="var/www/html/img/login_login.png" alt="img">
+        </div>
+  
+  <h4 style="display: flex; justify-content: center; align-items: center; color: black; font-weight: 600; ">Sign In to Your Chemarket Account</h4> 
+   <p class="subtitle">Use your credentials to securely access the platform.</p>
+  
+  </title>
+  <form id="login-form" action="{block name='login_form_actionurl'}{$action}{/block}" method="post">
+
+    <div>
+      {block name='login_form_fields'}
+        {foreach from=$formFields item="field"}
+          {block name='form_field'}
+            {form_field field=$field}
+          {/block}
+        {/foreach}
+      {/block}
+      <div class="forgot-password">
+        <a href="{$urls.pages.password}" rel="nofollow" style="color: #026D8F;">
+          {l s='Forgot your password?' d='Shop.Theme.Customeraccount'}
+        </a>
+      </div>
+    </div>
+
+    {block name='login_form_footer'}
+      <footer class="form-footer text-sm-center clearfix">
+        <input type="hidden" name="submitLogin" value="1">
+        <input type="hidden" name="back" value="{$link->getPageLink('my-account')}" />
+        {block name='form_buttons'}
+          <button id="submit-login" class="btn sign login-button" data-link-action="sign-in" type="submit" class="form-control-submit" style="background-color: #026D8F; color: white;">
+            {l s='Login' d='Shop.Theme.Actions'}
+          </button>
+        {/block}
+      </footer>
+    {/block}
+   <p class="text-center" style="margin-top:18px;text-align: center;"> New to Chemarket? <a href="register" style="color: #026D8F;">Register a new account</a></p>
+  </form>
+
+  {* ===== Password toggle CSS + JS (shows only after typing/has value) ===== *}
+  <style>
+    .password-wrapper {
+      display: flex;
+      align-items: stretch;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .password-wrapper input {
+      flex: 1;
+      border: 0 !important;
+      outline: none !important;
+      padding: 10px 12px;
+      box-shadow: none !important;
+      background: transparent;
+      min-height: 38px;
+    }
+
+    /* Hide by default (important to avoid theme overrides) */
+    .password-wrapper .toggle-password {
+      display: none !important;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      min-width: 40px;
+      cursor: pointer;
+      color: #666;
+      border-left: 1px solid #e6e6e6;
+      user-select: none;
+      border: none !important;
+    }
+
+    /* Show when wrapper has-value */
+    .password-wrapper.has-value .toggle-password {
+      display: flex !important;
+      background-color: white !important;
+    }
+
+    .password-wrapper .toggle-password:hover {
+      color: #026D8F;
+    }
+    #login-form input#field-password
+ {
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+  box-shadow: 0 0 0px 1000px #fff inset !important;
+  -webkit-text-fill-color: #000 !important; /* keeps text black */
+}
+
+#login-form .form-control{
+    border-radius: 6px;
+    height: 50px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    padding-left: 15px;
+    font-size: 14px;
+    width: 100%;
+
+}
+
+
+#submit-login{
+    background-color: #004d71 !important ;
+    color: white;
+    width: 100%;
+    height: 55px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+
+
+  </style>
+
+  {* Load Font Awesome 6 (for fa-eye / fa-eye-slash) *}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById('login-form');
+    if (!form) return;
+
+    // Select password inputs inside the login form only
+    const passwordInputs = form.querySelectorAll("input[type='password']");
+
+    passwordInputs.forEach(function (passwordInput) {
+      // If already wrapped by previous code, skip
+      if (passwordInput.closest('.password-wrapper')) return;
+
+      // Create wrapper and wrap the input
+      const wrapper = document.createElement('div');
+      wrapper.className = 'password-wrapper';
+      const parent = passwordInput.parentNode;
+      parent.insertBefore(wrapper, passwordInput);
+      wrapper.appendChild(passwordInput);
+
+      // Create the eye button (initially hidden by CSS)
+      const eyeBtn = document.createElement('button');
+      eyeBtn.type = 'button';
+      eyeBtn.className = 'toggle-password';
+      eyeBtn.setAttribute('aria-label', 'Show password');
+      eyeBtn.innerHTML = '<i class="fa-solid fa-eye" aria-hidden="true"></i>';
+      // also set inline to be safe against very aggressive CSS
+      eyeBtn.style.setProperty('display', 'none', 'important');
+      wrapper.appendChild(eyeBtn);
+
+      // Refresh logic: show eye only when value is non-empty
+      function refreshEye() {
+        const val = passwordInput.value || '';
+        const hasVal = val.trim().length > 0;
+
+        if (hasVal) {
+          wrapper.classList.add('has-value');
+          // ensure icon is visible (override aggressive styles)
+          eyeBtn.style.setProperty('display', 'flex', 'important');
+        } else {
+          wrapper.classList.remove('has-value');
+          // hide via inline style too
+          eyeBtn.style.setProperty('display', 'none', 'important');
+
+          // ensure password type is reset to hidden when cleared
+          if (passwordInput.type === 'text') {
+            passwordInput.type = 'password';
+            const ic = eyeBtn.querySelector('i');
+            if (ic) {
+              ic.classList.remove('fa-eye-slash');
+              ic.classList.add('fa-eye');
+            }
+            eyeBtn.setAttribute('aria-label', 'Show password');
+          }
+        }
+      }
+
+      // Initial check (handles autofill/saved)
+      refreshEye();
+      // Re-check after short delays for autofill quirks
+      setTimeout(refreshEye, 50);
+      setTimeout(refreshEye, 500);
+
+      // Listen to events that change value
+      ['input', 'change', 'keyup', 'paste', 'cut'].forEach(evt =>
+        passwordInput.addEventListener(evt, refreshEye)
+      );
+
+      // Toggle password visibility when clicked
+      eyeBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        const icon = eyeBtn.querySelector('i');
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          if (icon) { icon.classList.remove('fa-eye'); icon.classList.add('fa-eye-slash'); }
+          eyeBtn.setAttribute('aria-label', 'Hide password');
+        } else {
+          passwordInput.type = 'password';
+          if (icon) { icon.classList.remove('fa-eye-slash'); icon.classList.add('fa-eye'); }
+          eyeBtn.setAttribute('aria-label', 'Show password');
+        }
+        passwordInput.focus();
+      });
+    });
+  });
+  </script>
+
+{/block}
