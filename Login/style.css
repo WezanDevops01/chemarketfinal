@@ -3,11 +3,7 @@ body {
     
     background-size: cover;
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    margin: 0;
+    
     font-family: Helvetica, Arial, sans-serif;
     background: url("./img/Login_backgroundimg.png") ;
   }
@@ -20,12 +16,15 @@ body {
   }
 
   .login-card {
-      background: #ffffff;
-      border-radius: 32px;
-      width: 100%;
-      max-width: 520px;
-      padding: 40px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    background: #ffffff;
+    border-radius: 32px;
+    width: 100%;
+    max-width: 520px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
   }
 
   @media (max-width: 576px) {
