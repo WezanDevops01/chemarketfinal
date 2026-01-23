@@ -1,139 +1,1388 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chemarket – Chemical RFQ Management</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chemarket - Chemical RFQ Workspace</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../css/headerfooter.css">
 
-    <!-- Bootstrap (grid + base only) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #001a35;
+      --brand-blue: #006193;
+      --text-main: #2d3748;
+      --text-light: #718096;
+      --white: #ffffff;
+      --brand-dark: #003049; /* */
+      --brand-light: #006193; /* */
+      --text-white: #ffffff;
+      --border-color: rgba(255, 255, 255, 0.2);
+    }
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+
+   
+
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Custom Nav Spacing */
+    .site-header {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding: 30px 0;
+      z-index: 100;
+    }
+
+    .custom-nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      color: var(--white);
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-logo.dark {
+      color: var(--navy);
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 45px;
+    }
+
+    .main-nav a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav-cta {
+
+      background: var(--white);
+      border: none;
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* Hero Styling */
+    .hero-block {
+      padding: 180px 0 54px;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      background: url("img/Desktop\ -\ 25.webp");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .hero-bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      opacity: 0.15;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .top-pill {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 25px;
+      display: inline-block;
+    }
+
+    .hero-block h1 {
+      font-size: 56px;
+      font-weight: 500;
+      /* max-width: 857px; */
+      margin: 0 auto 25px;
+      line-height: 1.15;
+      width: 82%;
+
+    }
+
+    .hero-block p {
+      max-width: 622px;
+      margin: 0 auto 40px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+
+    .hero-action-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 80px;
+    }
+
+    .btn-primary-filled {
+      background: var(--white);
+      color: var(--navy);
+      border: none;
+      padding: 15px 35px;
+      border-radius: 30px;
+      font-weight: 700;
+      width: 25%;
+
+    }
+
+    .btn-outline-white {
+      background: transparent;
+      border: 1px solid #FAFAFA;
+      color: var(--white);
+      padding: 15px 35px;
+      border-radius: 30px;
+      font-weight: 600;
+      width: 25%;
+    }
+
+    /* Trust Bar */
+    .hero-trust-bar {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .trust-label {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .trust-logos {
+      display: flex;
+      gap: 40px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 14px;
+    }
+
+    /* Mockup Frame */
+      .mockup-display {
+        position: relative;
+        z-index: 5;
+        /* margin: 0rem 0rem; */
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .browser-frame {
+      border-radius: 12px;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.15);
+      height: 600px;
+      overflow: hidden;
+      background: url("./img/gradient_background.webp");
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding: 20px;
+     
+    }
+
+    .img-placeholder {
+      height: 100%;
+      color: #a0aec0;
+      font-weight: 700;
+      /* background-repeat: no-repeat; */
+      /* background-size: cover; */
+      background: #837e7e;
+      /* padding: 10px;*/
+       display: flex;
+       justify-content: center;
+       align-items: center;
+    }
+
+    /* Grid Sections */
+    .section-heading {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      color: #353536;
+    }
+
+    .brand-blue {
+      color: var(--brand-blue);
+    }
+
+    .opt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .opt-card {
+      padding: 40px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      border-radius: 16px;
+      transition: 0.3s;
+    }
+
+    .opt-card:hover {
+      border-color: var(--brand-blue);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .opt-icon {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .opt-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .opt-card p {
+      font-size: 14px;
+      color: var(--text-light);
+    }
+
+    /* Feature Split Layout */
+    .feature-toggle-section {
+      padding: 80px 0;
+    }
+
+    .toggle-switcher {
+      background: #FFFFFF;
+    padding: 6px;
+    border-radius: 100px;
+    display: flex;
+    width: fit-content;
+    margin: 0 auto 70px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+    .toggle-switcher button {
+      border: none;
+      padding: 10px 30px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 14px;
+      background: transparent;
+      color: #64748b;
+    }
+
+    .toggle-switcher button.active {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+
+
+     /*toogle switcher for tabs 2*/
+
+     
+
+    .toggle-switcher2 {
+      background: #FFFFFF;
+    padding: 6px;
+    border-radius: 100px;
+    display: flex;
+    width: fit-content;
+    margin: 0 auto 70px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+    .toggle-switcher2 button {
+      border: none;
+      padding: 10px 30px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 14px;
+      background: transparent;
+      color: #64748b;
+    }
+
+    .toggle-switcher2 button.active {
+      background: linear-gradient(90deg, #003049 0%, #006193 100%);
+
+      color: var(--white);
+    }
+
+    .split-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 80px;
+    }
+
+  
+
+    .text-side h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .sub-heading {
+      color: var(--text-light);
+      margin-bottom: 30px;
+      font-size: 1.05rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 40px;
+    }
+
+    .feature-list li {
+      margin-bottom: 15px;
+      padding-left: 28px;
+      position: relative;
+      font-size: 15px;
+    }
+
+    .feature-list li {
+      position: relative;
+      padding-left: 30px; /* space for icon */
+    }
+    
+    .feature-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 16px;
+      width: 30px;
+      height: 20px;
+      background-image: url(./img/directionicon.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .btn-dark-action {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      padding: 14px 30px;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    .btn-dark-action2{
+      background: linear-gradient(90deg, #003049 0%, #006193 100%);
+      color: var(--white);
+      border: none;
+      padding: 14px 30px;
+      border-radius: 30px;
+      font-weight: 700;
+    }
+
+    /* How it Works Step Grid */
+    .how-it-works {
+      padding: 100px 0;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .step-img-box {
+      height: 200px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #cbd5e0;
+      margin-top: 1rem;
+
+    }
+
+    .step-card{
+    
+      box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+      border-radius: 30px;
+
+    }
+
+    .step-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      border-radius: 30px;
+      padding-left: 2rem;
+    }
+
+    .step-card p {
+      font-size: 14px;
+      color: var(--text-light);
+      padding-left: 2rem;
+
+    }
+
+    /* Concave Banner Shape */
+    .cta-banner-container {
+      background-image: url(./img/bluecontainer.png);
+      height: 520px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+
+    }
+
+    .concave-banner {
+    }
+
+    .concave-banner h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .btn-white-pill {
+      background: var(--white);
+      color: var(--navy);
+      border: none;
+      padding: 12px 40px;
+      border-radius: 100px;
+      font-weight: 800;
+      transform: translateY(6rem);
+
+    }
+
+
+    /* Footer */
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding: 80px 0;
+      border-top: 1px solid #edf2f7;
+    }
+
+    .footer-info p {
+      color: var(--text-light);
+      font-size: 14px;
+      margin-top: 15px;
+    }
+
+    .footer-links h6 {
+      font-weight: 800;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    .footer-links a {
+      display: block;
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+
+
+
+    .desktop-logo{
+      display: flex;
+    }
+    .mobile-logo{
+      display: none;
+    }
+    /*mobile view for css*/
+
+
+    @media (max-width:576px){
+
+      .toggle-switcher button {
+        border: none;
+        padding: 10px 30px;
+        border-radius: 100px;
+        font-weight: 700;
+        font-size: 12px;
+        background: transparent;
+        color: #64748b;
+    }
+    
+        .bi-person::before {
+            font-size: 15px;
+            content: "\f4e1";
+        }
+    
+    .visual-side{
+      background-repeat: no-repeat;
+    background-size: contain;
+    
+    }
+    
+    .text-side h3 {
+        font-size: 1.2rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+    
+    .sub-heading {
+        color: var(--text-light);
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+        /* text-align: justify; */
+    }
+    
+    .feature-list strong {
+        color: #42454B;
+        font-weight: 500;
+        font-size: 22px;
+    }
+    
+    
+    .btn-dark-action {
+        background: var(--navy);
+        color: var(--white);
+        border: none;
+        padding: 14px 30px;
+        border-radius: 30px;
+        font-weight: 700;
+    }
+    
+    .section-heading {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 2rem;
+        color: #353536;
+    }
+    
+    .step-card {
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        border-radius: 30px;
+        width: 300px;
+    }
+    
+    
+     .step-grid {
+         gap: 30px;
+            padding: 0 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+      
+      .step-card img{
+       width:100%;
+      }
+
+
+      .cta-banner-container {
+        height: auto !important;
+        padding: 50px 20px;
+        background-size: contain !important;
+    }
+
+
+    .toggle-switcher2 button {
+      border: none;
+      padding: 10px 30px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 12px;
+      background: transparent;
+      color: #64748b;
+  }
+  
+      .bi-person::before {
+          font-size: 15px;
+          content: "\f4e1";
+      }
+
+      .feature-list strong {
+        color: #42454B;
+        font-weight: 500;
+        font-size: 21px !important;
+    }
+
+    .btn-white-pill {
+      background: var(--white);
+      color: var(--navy);
+      border: none;
+      padding: 3px 12px;
+      border-radius: 100px;
+      font-weight: 800;
+      transform: translateY(1.5rem) !important;
+      font-size: 12px;
+  }
+  
+  .desktop-logo{
+    display: none;
+  }
+  .mobile-logo{
+    display: flex;
+  }
+
+  .solution{
+    display: none;
+  }
+
+ .getademo{
+    display: none;
+}
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+    }
+
+    .play-video-btn{
+        border: none;
+        background-color: #001B37;
+        color: white;
+        border-radius: 30px;
+        padding: 10px 20px;
+    }
+
+
+
+
+
+
+    /* Responsive */
+    @media (min-width: 577px) and (max-width: 991px)  {
+
+      
+      .hero-block h1 {
+        font-size: 2.5rem;
+        width: 100%;
+      }
+
+      .opt-grid,
+      .step-grid,
+      .split-layout,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+     /* .main-nav {
+        display: none;
+      }
+*/
+      /* Use burger menu in production */
+.visual-side2{
+
+ 
+    background-repeat: no-repeat;
+}
+.btn-primary-filled {
+  background: var(--white);
+  color: var(--navy);
+  border: none;
+  padding: 15px 35px;
+  border-radius: 30px;
+  font-weight: 700;
+  width: 40%;
+}
+
+
+.btn-white-pill{
+  transform: translateY(-3rem);
+}
+
+
+
+.visual-side img {
+  width: 350px;
+  height: 300px;
+  background-size: contain;
+}
+
+
+.diagram-placeholder{
+
+ aspect-ratio: unset !important;
+}
+    }
+
+
+    
+/*start */
+
+
+
+.custom-info-bar {
+  background-color: var(--brand-dark); /* Using Brand/1 base color */
+  color: var(--text-white);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Styling the Icons to match the UI */
+.info-icon {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;
+}
+
+.info-icon i {
+  font-size: 16px;
+}
+
+/* The vertical separators */
+.separator {
+  width: 1px;
+  height: 30px;
+  background-color: var(--border-color);
+}
+
+/* Gradient effect on specific text (optional, based on your previous request) */
+.gradient-text {
+  background: linear-gradient(180deg, var(--brand-dark) 0%, var(--brand-light) 100%); /* */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+
+
+
+/*end*/
+
+.visual-side{
+ /* background: url("./img/requirementcircle.png");*/
+  background-repeat: no-repeat;
+background-size: contain;
+}
+
+
+.diagram-placeholder{
+     background-repeat: no-repeat;
+     display: flex;
+     justify-content: center;
+}
+
+
+.feature-list strong{
+  color: #42454B;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.feature-list li{
+  color: #42454B;
+  font-weight: 400;
+  font-size: 15px;
+  width: 80%;
+}
+
+
+.visual-side2{
+ /*background-image: url("./img/forprogrument.png");*/
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.sub-title{
+  color: #353536 !important;
+  font-weight: 500 !important;
+  font-size: 20px !important;
+}
+.info-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  width: 200px;
+}
+
+
+/* --- COMPREHENSIVE MOBILE FIX --- */
+@media (max-width: 767px) {
+  /* 1. Reset Body to prevent horizontal leaking */
+  html, body {
+      overflow-x: hidden;
+      width: 100%;
+  }
+
+  /* 2. Fix the Hero Heading */
+  .hero-block h1 {
+      width: 100% !important; /* Take full width on mobile */
+      font-size: 28px !important; /* Scale down font size */
+      padding: 0 15px;
+  }
+
+  /* 3. Stack the Buttons (Make them 100% width) */
+  .hero-action-group {
+      flex-direction: column !important;
+      align-items: center;
+      gap: 12px;
+  }
+
+  .btn-primary-filled, 
+  .btn-outline-white {
+      width: 90% !important; /* Instead of 25% */
+      max-width: 320px;
+  }
+
+  /* 4. Fix the dark blue Info Bar */
+  .custom-info-bar {
+      flex-direction: column !important;
+      height: auto !important;
+      padding: 20px 0;
+      gap: 15px;
+  }
+
+  .separator {
+      display: none; /* Remove vertical lines on mobile */
+  }
+
+  /* 5. Force all Grids to stack in 1 column */
+  .opt-grid, 
+  .step-grid, 
+  .split-layout {
+      grid-template-columns: 1fr !important;
+      gap: 30px;
+      padding: 0 15px;
+  }
+
+  /* 6. Fix the Browser/Dashboard Frame */
+  .browser-frame {
+      height: 250px !important; /* Smaller height for mobile */
+  }
+
+  /* 7. Center text sides for readability */
+  .text-side {
+      text-align: center;
+  }
+
+  .feature-list li {
+      text-align: left;
+      width: 100% !important;
+  }
+
+  /* 8. Fix the CTA Banner (Blue Section) */
+  .cta-banner-container {
+      height: auto !important;
+      padding: 50px 20px;
+      background-size: cover;
+  }
+
+  .btn-white-pill {
+      margin-top: 20px;
+  }
+     /* Use burger menu in production */
+     .visual-side2{
+
+/*      background-image: url(./img/forprogrument.png) !important;*/
+      background-repeat: no-repeat;
+      background-size: contain !important;
+  
+  }
+  .visual-side img{
+    width: 300px;
+  }
+
+
+
+}
+
+
+#supp-flow{
+  display: none;
+}
+
+
+#supp-view-2{
+display: none;
+
+}
+
+
+/*MOBILE AND TABLET VIEW*/
+/* --- TABLET VIEW (991px and below) --- */
+@media (max-width: 991px) {
+ .tab-content{
+     flex-direction: column;
+}
+.diagram-placeholder2{
+ display: flex;
+ justify-content: center;
+
+}
+
+.visual-side2 img {
+  width: 350px;
+  height: 300px;
+  background-size: contain;
+}
+
+
+}
+
+/* iPad Pro ONLY */
+@media only screen
+  and (min-width: 1024px)
+  and (max-width: 1366px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  
+  .step-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+}
+
+
+.btn-white-pill {
+  transform: translateY(2rem);
+}
+
+.btn-primary-filled {
+  width: 34%;
+}
+  }
+
+
+
+</style>
 </head>
+
 <body>
 
-<!-- ================= NAVBAR ================= -->
-<nav class="cm-navbar">
-    <div class="cm-container">
-        <a class="cm-logo" href="#">
-            <img src="./img/logo.png" alt="Chemarket">
-        </a>
+  <header class="site-header">
+    <div class="container custom-nav-wrapper">
+      <div class="brand-logo">
+        <img src="./img/logo.png" alt="img" class="desktop-logo">
+        <img src="./img/shortlogo.png" alt="logo" class="mobile-logo">
+      </div>
+      <nav class="main-nav">
+        <a href="#" class="solution">Solutions</a>
+        <a href="#">Sign in</a>
+        <a href="#" class="getademo">Get a demo</a>
+        <button class="nav-cta">Go to marketplace</button>
+      </nav>
+    </div>
+  </header>
 
-        <div class="cm-nav-links">
-            <a href="#">Solutions</a>
-            <a href="#">Sign In</a>
-            <a href="#">Get a demo</a>
-            <a href="#" class="cm-btn-primary">Go to marketplace</a>
-        </div>
+  <section class="hero-block">
+    <div class="hero-bg-overlay"></div>
+    <div class="container hero-inner">
+      <span class="top-pill">RFQ and compliance workspace for chemicals</span>
+      <h1>Get chemical RFQ's out of email and into one shared workspace.</h1>
+      <p>Procurement teams issue structured RFQs, suppliers respond with complete, compliant quotes. All documentation, conversations, and decisions in one place.</p>
+      <div>
+
+      <div class="hero-action-group">
+        <button class="btn-primary-filled">Browse the Marketplace</button>
+        <button class="btn-outline-white">Get a demo</button>
+
+      </div>
+
+        <p>SOC 2-ready audit trails for every RFQ.</p>
+
+    </div>
+     
+    </div>
+  </section>
+
+
+ 
+  <nav class="custom-info-bar">
+    <div class="info-item">
+        <div class="info-icon"><i class="fas fa-certificate"></i></div>
+        <span>Verified Partners Only</span>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="info-item">
+        <div class="info-icon"><i class="fas fa-file-invoice"></i></div>
+        <span>Structured RFQs</span>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="info-item">
+        <div class="info-icon"><i class="fas fa-shield-alt"></i></div>
+        <span>Auto-Compliance</span>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="info-item">
+        <div class="info-icon"><i class="fas fa-truck-fast"></i></div>
+        <span>Audit-Ready Trail</span>
     </div>
 </nav>
 
-<!-- ================= HERO ================= -->
-<header class="cm-hero">
-    <div class="cm-container cm-hero-content">
-        <span class="cm-badge">RFQ and compliance workspace for chemicals</span>
 
-        <h1>
-            Get chemical RFQs out of email and <br>
-            into one shared workspace.
-        </h1>
+  <section class="mockup-display container">
+    <div class="browser-frame">
+      <div class="img-placeholder">
 
-        <p>
-            Procurement teams issue structured RFQs, suppliers respond with complete,
-            compliant quotes. All documentation, conversations, and decisions in one place.
+        <button class="play-video-btn"><img src="./img/playbutton.png" alt=""> Watch demo</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="optimized-section container">
+    <h2 class="section-heading">What <span class="brand-blue">Chemarket</span> optimizes for</h2>
+    <div class="opt-grid">
+      <div class="opt-card">
+        <div class="opt-icon"> 
+          <img src="./img/Vector (2).png" alt="">
+        </div>
+        <h3>Verified partners only</h3>
+        <p>Onboard only vetted chemical buyers and suppliers. Company registration and basic checks are completed before they appear in your workspace, so you avoid generic directory noise.</p>
+      </div>
+      <div class="opt-card">
+        <div class="opt-icon">📄</div>
+        <h3>Structured RFQs, 
+          not loose emails</h3>
+        <p>RFQs capture specs, volume, packaging, delivery window and documentation requirements up front, so suppliers can respond once instead of asking the same questions over and over.</p>
+      </div>
+      <div class="opt-card">
+        <div class="opt-icon">🛡️</div>
+        <h3>Compliance and audit trail</h3>
+        <p>Every RFQ, quote, message and document is stored with the decision. That makes it easier to support REACH, TSCA, GMP and ISO-driven audits or customer questions months later.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="feature-toggle-section container tab-wrapper">
+    <div class="toggle-switcher">
+      <button class="tab-btn active" data-target="proc-flow" ><i class="bi bi-person-fill"></i> For Procurement Teams</button>
+      <button class="tab-btn" data-target="supp-flow"><i class="bi bi-person"></i> For Chemical Suppliers</button>
+    </div>
+
+    <div class="tab-content  active-view split-layout" id="proc-flow">
+      <div class="visual-side">
+        <div class="diagram-placeholder">
+          <img src="./img/requirementcircle.png" alt="">
+        </div>
+      </div>
+      <div class="text-side">
+        <h3>For procurement and technical buying teams</h3>
+        <p class="sub-heading">CheMarket is for sourcing, QA, regulatory and plant teams that need reliable inputs from verified partners, with complete documentation and a clear record of how each decision was made.</p>
+        <ul class="feature-list">
+          <li><strong>Source from verified supplies</strong> <br> Only work with suppliers that have passed basic company and documentation checks.</li>
+          <li><strong>Replace email RFQs</strong> <br> Send one structured RFQ to multiple relevant suppliers instead of separate email threads.</li>
+          <li><strong>Decentralize search price</strong> <br> Compare offers on technical fit, lead time, reliability and documentation completeness.</li>
+          <li><strong>Stay ahead with analytics</strong> <br> Have RFQs, quotes, attachments and approvals in one place when audits or customer questions arrive.</li>
+        </ul>
+        <button class="btn-dark-action">Browse marketplace</button>
+      </div>
+    </div>
+
+
+
+
+    <div class="split-layout tab-content"  id="supp-flow" >
+      <div class="visual-side">
+        <div class="diagram-placeholder">
+
+          <img src="./img/circlefortab.png" alt="">
+
+        </div>
+      </div>
+      <div class="text-side">
+        <h3>For procurement and technical buying teams</h3>
+        <p class="sub-heading">CheMarket is for sourcing, QA, regulatory and plant teams that need reliable inputs from verified partners, with complete documentation and a clear record of how each decision was made.</p>
+        <ul class="feature-list">
+          <li><strong>Source from verified supplies</strong> <br> Only work with suppliers that have passed basic company and documentation checks.</li>
+          <li><strong>Replace email RFQs</strong> <br> Send one structured RFQ to multiple relevant suppliers instead of separate email threads.</li>
+          <li><strong>Decentralize search price</strong> <br> Compare offers on technical fit, lead time, reliability and documentation completeness.</li>
+          <li><strong>Stay ahead with analytics</strong> <br> Have RFQs, quotes, attachments and approvals in one place when audits or customer questions arrive.</li>
+        </ul>
+        <button class="btn-dark-action">Browse marketplace</button>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="feature-toggle-section container">
+    <div class="toggle-switcher2 tab-wrapper"> <button class="tab-btn active" data-target="proc-view-2">
+      <i class="bi bi-person-fill"></i> For Procurement Teams
+    </button>
+    <button class="tab-btn" data-target="supp-view-2">
+      <i class="bi bi-person"></i> For Chemical Suppliers
+    </button>
+  </div>
+
+  <div class="split-layout tab-content" id="proc-view-2">
+      <div class="visual-side2">
+        <div class="diagram-placeholder2">
+
+          <img src="./img/forprogrument.png" alt="">
+        </div>
+      </div>
+      <div class="text-side">
+        <h3>For procurement and technical buying teams</h3>
+        <p class="sub-heading">CheMarket is for sourcing, QA, regulatory and plant teams that need reliable inputs from verified partners, with complete documentation and a clear record of how each decision was made.</p>
+        <ul class="feature-list">
+          <li><strong>Source from verified supplies</strong> <br> Only work with suppliers that have passed basic company and documentation checks.</li>
+          <li><strong>Replace email RFQs</strong> <br> Send one structured RFQ to multiple relevant suppliers instead of separate email threads.</li>
+          <li><strong>Decentralize search price</strong> <br> Compare offers on technical fit, lead time, reliability and documentation completeness.</li>
+          <li><strong>Stay ahead with analytics</strong> <br> Have RFQs, quotes, attachments and approvals in one place when audits or customer questions arrive.</li>
+        </ul>
+        <button class="btn-dark-action2">Browse marketplace</button>
+      </div>
+    </div>
+
+
+    <div class="split-layout tab-content" id="supp-view-2">
+      <div class="visual-side2">
+        <div class="diagram-placeholder2">
+
+          <img src="./img/forchemicalimg2.png" alt="">
+        </div>
+      </div>
+      <div class="text-side">
+        <h3>For procurement and technical buying teams</h3>
+        <p class="sub-heading">CheMarket is for sourcing, QA, regulatory and plant teams that need reliable inputs from verified partners, with complete documentation and a clear record of how each decision was made.</p>
+        <ul class="feature-list">
+          <li><strong>Source from verified supplies</strong> <br> Only work with suppliers that have passed basic company and documentation checks.</li>
+          <li><strong>Replace email RFQs</strong> <br> Send one structured RFQ to multiple relevant suppliers instead of separate email threads.</li>
+          <li><strong>Decentralize search price</strong> <br> Compare offers on technical fit, lead time, reliability and documentation completeness.</li>
+          <li><strong>Stay ahead with analytics</strong> <br> Have RFQs, quotes, attachments and approvals in one place when audits or customer questions arrive.</li>
+        </ul>
+        <button class="btn-dark-action2">Browse marketplace</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works container">
+    <h2 class="section-heading center">How <span class="brand-blue">procurement</span> works on Chemarket</h2>
+    <div class="step-grid">
+      
+      <div class="step-card">
+        <div class="step-img-box">
+
+          <img src="./img/chemical.png" alt="chemical">
+        </div>
+        <h4>1. Browse & Search</h4>
+        <p class="sub-title">Search by chemical name, 
+          CAS, or category</p>
+        <p>Filter by certifications, supplier region, availability.</p>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-img-box">
+
+          <img src="./img/research.png" alt="research">
+        </div>
+        <h4>2. Request Quote</h4>
+        <p class="sub-title">Specify quantity, delivery, payment terms</p>
+        <p>Send RFQ to all or select specific suppliers
         </p>
+      </div>
+      <div class="step-card">
+        <div class="step-img-box">
 
-        <div class="cm-hero-actions">
-            <a href="#" class="cm-btn-light">Browse the marketplace</a>
-            <a href="#" class="cm-btn-outline">Get a demo</a>
+          <img src="./img/partnership.png" alt="partnership">
         </div>
+        <h4>3. Compare & Decide</h4>
+        <p class="sub-title">Review supplier metrics and 
+          commercial terms</p>
+
+        <p>Negotiate or accept. Private all the <way class=""></way>.</p>
+      </div>
     </div>
-</header>
+  </section>
 
-<!-- ================= OPTIMIZATION ================= -->
-<section class="cm-section">
-    <div class="cm-container">
-        <h2 class="cm-section-title">
-            What <span>Chemarket</span> optimizes for
-        </h2>
 
-        <div class="row cm-cards">
-            <div class="col-md-4">
-                <div class="cm-card">
-                    <i class="bi bi-shield-check"></i>
-                    <h4>Verified partners only</h4>
-                    <p>All suppliers pass company and compliance verification before onboarding.</p>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="cm-card">
-                    <i class="bi bi-diagram-3"></i>
-                    <h4>Structured RFQs</h4>
-                    <p>No loose emails. Standardized RFQs ensure complete and comparable quotes.</p>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="cm-card">
-                    <i class="bi bi-journal-check"></i>
-                    <h4>Compliance & audit trail</h4>
-                    <p>Every RFQ, document, and approval stored securely for audits.</p>
-                </div>
-            </div>
-        </div>
+ 
+  <section class="cta-banner-container container">
+    <div class="concave-banner">
+   <div class="banner-content">
+        <button class="btn-white-pill">Register now</button>
+      </div>     
     </div>
-</section>
+  </section>
+  
+  
+<footer class="cm-footer">
 
-<!-- ================= HOW IT WORKS ================= -->
-<section class="cm-section cm-section-light">
-    <div class="cm-container">
-        <h2 class="cm-section-title">
-            How <span>procurement</span> works on Chemarket
-        </h2>
+  <!-- TOP FOOTER -->
+  <div class="cm-footer-top">
 
-        <div class="row cm-steps">
-            <div class="col-md-4">
-                <div class="cm-step">
-                    <img src="https://via.placeholder.com/400x250">
-                    <h5>1. Browse & Search</h5>
-                    <p>Search by chemical name, CAS, or category.</p>
-                </div>
-            </div>
+      <!-- BRAND -->
+      <div class="cm-footer-brand">
+          <img src="./img/footer_logo.png" alt="Chemarket">
+          <h4>Global, Reliable Chemical Supply</h4>
+          <p>
+              Access high-grade chemicals worldwide through Chemarket, with verified
+              quality, stable logistics, and steady supply for cosmetics,
+              pharmaceutical, and industrial applications.
+          </p>
 
-            <div class="col-md-4">
-                <div class="cm-step">
-                    <img src="https://via.placeholder.com/400x250">
-                    <h5>2. Request Quotes</h5>
-                    <p>Send structured RFQs to verified suppliers.</p>
-                </div>
-            </div>
+          <div class="cm-social">
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+              <a href="#"><i class="bi bi-twitter-x"></i></a>
+              <a href="#"><i class="bi bi-facebook"></i></a>
+          </div>
+      </div>
 
-            <div class="col-md-4">
-                <div class="cm-step">
-                    <img src="https://via.placeholder.com/400x250">
-                    <h5>3. Compare & Decide</h5>
-                    <p>Compare pricing, delivery, and compliance side-by-side.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+      <!-- FOR CUSTOMERS -->
+     
 
-<!-- ================= CTA ================= -->
-<section class="cm-cta">
-    <div class="cm-container">
-        <h2>
-            Ready to move chemical RFQs <br>
-            out of email?
-        </h2>
-        <a href="#" class="cm-btn-light">Register now</a>
-    </div>
-</section>
+      <div class="cm-footer-col">
+        <h5 class="cm-footer-toggle">
+          For Customers
+          <i class="bi bi-chevron-down accordian-icon"></i>
+        </h5>
+        <ul class="cm-footer-menu">
+          <li><i class="bi bi-chevron-right"></i><a href="#">Features for buyers</a></li>
+        </ul>
+      </div>
+      
 
+      <!-- FOR SELLERS -->
+      <div class="cm-footer-col">
+        <h5 class="cm-footer-toggle">
+          For Seller
+          <i class="bi bi-chevron-down accordian-icon"></i>
+        </h5>
+        <ul class="cm-footer-menu">
+          <li><i class="bi bi-chevron-right"></i><a href="#">Selling on chemarket</a></li>
+        </ul>
+      </div>
+      
+
+      <!-- COMPANY -->
+      
+      <div class="cm-footer-col">
+        <h5 class="cm-footer-toggle">
+          Company
+          <i class="bi bi-chevron-down accordian-icon"></i>
+        </h5>
+        <ul class="cm-footer-menu">
+          <li><i class="bi bi-chevron-right"></i><a href="#">About us</a></li>
+          <li><i class="bi bi-chevron-right"></i><a href="#">Contact us</a></li>
+          <li><i class="bi bi-chevron-right"></i><a href="#">Help center</a></li>
+          <li><i class="bi bi-chevron-right"></i><a href="#">Blogs</a></li>
+          <li><i class="bi bi-chevron-right"></i><a href="#">Terms of use </a></li>
+        </ul>
+      </div>
+      
+
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="cm-footer-bottom">
+      <div class="cm-footer-bottom-inner">
+          <div class="cm-footer-bottom-left">
+              © Chemarket 2026. All rights reserved.
+          </div>
+          <div class="cm-footer-bottom-right">
+              <a href="#">Terms of use</a>
+              <a href="#">Privacy policies & cookies</a>
+              <a href="#">Change language</a>
+          </div>
+      </div>
+  </div>
+
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+    
+      function footerAccordion() {
+        if (window.innerWidth <= 576) {
+    
+          $('.cm-footer-toggle').off('click').on('click', function () {
+            const parent = $(this).closest('.cm-footer-col');
+    
+            // Close others
+            $('.cm-footer-col').not(parent).removeClass('active');
+    
+            // Toggle current
+            parent.toggleClass('active');
+          });
+    
+        } else {
+          // Reset for tablet & desktop
+          $('.cm-footer-col').removeClass('active');
+          $('.cm-footer-menu').removeAttr('style');
+        }
+      }
+    
+      footerAccordion();
+      $(window).on('resize', footerAccordion);
+
+      $('.tab-btn').on('click', function() {
+        // 1. Get the local wrapper to keep switches independent
+        const $wrapper = $(this).closest('section');
+
+        // 2. Button State Logic
+        $wrapper.find('.tab-btn').removeClass('active');
+        $(this).addClass('active');
+
+        // 3. Icon Swap Logic
+        $wrapper.find('.tab-btn i').removeClass('bi-person-fill').addClass('bi-person');
+        $(this).find('i').addClass('bi-person-fill').removeClass('bi-person');
+
+        // 4. Content Toggle Logic
+        $wrapper.find('.tab-content').hide();
+        const targetId = $(this).data('target');
+        $('#' + targetId).fadeIn(400).css('display', 'flex'); 
+    });
+    
+    });
+  </script>
 </body>
+
 </html>
+

@@ -1,0 +1,536 @@
+/* Browse the Chemical
+Marketplace styling start  */
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* --- Custom Section Layout --- */
+.section-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid #d1e1eb;
+    border-radius: 50px;
+    color: #5a8ba3;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.main-heading {
+    font-size: 48px;
+    font-weight: 700;
+    color: #353536;
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+}
+
+.main-heading span {
+    color: #006193;
+}
+
+.sub-text {
+    color: #42454B;
+    font-size: 16px;
+    margin-bottom: 50px;
+    font-weight: 400;
+}
+
+/* --- Cards Wrapper (Using Flexbox) --- */
+.cards-wrapper {
+    display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 20px;
+}
+
+ 
+
+
+
+
+
+.category-card {
+    position: relative;
+    width: 289px;
+    height: 288px;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+}
+
+/* --- Image Area Placeholder --- */
+.category-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Card Overlay for Content */
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradient ensures text is visible over your future images */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.icon-circle {
+    position: absolute;
+    top: 47%;
+    left: 19px;
+    width: 57px;
+    height: 57px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.icon-circle img{
+    width: 100%;
+    height: 100%;
+}
+
+.category-title {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    line-height: 1.2;
+    width: 158px;
+}
+
+.category-count {
+    color: #cccccc;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* --- Button Style --- */
+.see-more-btn {
+    display: inline-block;
+    margin-top: 50px;
+    padding: 12px 40px;
+    border: 1px solid #004a77;
+    border-radius: 50px;
+    background: transparent;
+    color: #004a77;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.see-more-btn:hover {
+    background-color: #004a77;
+    color: white;
+}
+
+/* --- Responsive Behavior --- */
+@media (max-width: 768px) {
+    .main-heading { font-size: 32px; }
+    .category-card { width: 100%; max-width: 350px; }
+}
+
+
+/* Browse the Chemical
+Marketplace styling end  */
+
+
+
+/* CSS Variables */
+:root {
+    --primary-blue: #005a84;
+    --text-dark: #333333;
+    --text-muted: #666666;
+    --bg-light: #ffffff;
+    --border-color: #e0e0e0;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fcfcfc;
+}
+
+.main-container {
+    max-width: 1250px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+/* --- Tab Navigation --- */
+.tabs-wrapper {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.tabs-nav {
+    display: inline-flex;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 100px;
+    padding: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.tab-btn {
+    padding: 12px 24px;
+    border: none;
+    background: transparent;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Icon styling */
+.tab-btn i {
+    font-size: 18px;
+    color: var(--primary-blue); /* Default icon color */
+    transition: color 0.3s ease;
+}
+
+/* Active State */
+.tab-btn.active {
+    background: var(--primary-blue);
+    color: #fff;
+}
+
+/* Change Icon to White when button is active */
+.tab-btn.active i {
+    color: #fff !important;
+}
+
+/* --- Content Area --- */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.grid-card {
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 35px;
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+.image-box img {
+    width: 100%;
+    height: 403px;
+    border-radius: 18px;
+    display: block;
+}
+
+.text-box h2 {
+    font-size: 32px;
+    color: var(--text-dark);
+    margin-top: 0;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    width: 60%;
+}
+
+.text-box p {
+    font-size: 16px;
+    /* color: var(--text-muted); */
+    margin-bottom: 30px;
+    color: #42454B;
+    font-weight: 400;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-list li {
+    font-size: 24px;
+    font-weight: 500;
+    color: #42454B;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Custom Arrow Icon (Bootstrap Icon) for List */
+.feature-list li::before {
+    content: ""; /* Bootstrap Icon code for arrow-right-short */
+    font-family: "bootstrap-icons";
+    color: #999;
+    font-size: 22px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .grid-card {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-card {
+        grid-template-columns: 1fr;
+    }
+    .tabs-nav {
+        flex-direction: column;
+        border-radius: 15px;
+        width: 100%;
+    }
+}
+
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+
+/* trusted by seller and supplier start */
+
+/* trusted by seller and supplier end */
+
+.trusted-section h2{
+    font-size: 56px;
+    font-weight: 500;
+    text-align: center;
+    color: #353536;
+}
+
+
+
+.trusted-section h2 span{
+
+     color: #006193;
+}
+
+.trusted-supplier{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    gap: 6rem;
+}
+
+/* TRUSTED SECTION END */
+
+
+        .page-wrapper {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        .badge-custom {
+            display: inline-block;
+            background-color: #e9f2ff;
+            color: #006193;
+            font-size: 14px;
+            border-radius: 20px;
+            padding: 6px 14px;
+            margin-bottom: 20px;
+        }
+
+        .heading {
+            font-size: 40px;
+            font-weight: 600;
+            line-height: 1.3;
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+
+        .heading span {
+            color: #006193;
+        }
+
+        .sub-text {
+            font-size: 16px;
+            color: #6b7280;
+             max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .card-wrapper {
+            background-color: #FBFBFB;
+            border-radius: 30px;
+            margin-top: 50px;
+            padding: 30px;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        }
+
+        .supplier-list {
+            display: grid;
+            flex-wrap: wrap;
+            /* justify-content: space-between; */
+            /* gap: 24px; */
+            /* grid-template-columns: repeat(4, 1fr); */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .supplier-card {
+            width: calc(25% - 18px);
+            border-radius: 16px;
+            /* overflow: hidden; */
+            position: relative;
+            height: 280px;
+        }
+
+        .supplier-image {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .logo-circle {
+            width: 90px;
+            height: 90px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: #0d6efd;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Tablet */
+        @media (max-width: 991px) {
+            .supplier-card {
+                width: calc(50% - 12px);
+            }
+
+            .heading {
+                font-size: 34px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 575px) {
+            .supplier-card {
+                width: 100%;
+            }
+
+            .heading {
+                font-size: 28px;
+            }
+
+            .card-wrapper {
+                padding: 20px;
+            }
+        }
+
+
+        /* BROWSE MARKET PLACE SECTION START */
+
+.browse-marketplace-section div{
+        width: 90%;
+        height: 41%;
+        margin: 0 auto;
+    position: relative;
+    margin-bottom: 2rem;
+
+}
+
+.browse-marketplace-section div img{
+    width: 100%;
+    height: 100%;
+}
+
+.browse-btn{
+        background-color: white;
+        color: black;
+        border: none;
+        border-radius: 30px;
+        position: absolute;
+        top: 61%;
+        left: 44%;
+        padding: 10px 20px;    
+}
+
+@media (max-width: 767px) {
+    .browse-btn{
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    position: absolute;
+    top: 58%;
+    left: 34%;
+    padding: 7px 7px;
+    font-size: 11px;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .browse-btn {
+        background-color: white;
+        color: black;
+        border: none;
+        border-radius: 30px;
+        position: absolute;
+        top: 61%;
+        left: 41%;
+        padding: 10px 20px;
+    }
+
+}

@@ -1,9 +1,10 @@
+
+/* LOGIN PAGE START */
+
 body {
     font-family: 'Inter', sans-serif;
-    
-    background-size: cover;
+     background-size: cover;
     min-height: 100vh;
-    
     font-family: Helvetica, Arial, sans-serif;
     background: url("./img/Login_backgroundimg.png") ;
   }
@@ -168,3 +169,5 @@ body {
 .shake {
   animation: shake 0.2s ease-in-out 0s 2;
 }
+
+/* LOGIN PAGE END */

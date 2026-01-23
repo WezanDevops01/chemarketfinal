@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="/css/header.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link rel="stylesheet" href="/css/profile.css">
+<link rel="stylesheet" href="/css/categoryproductpage.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+    
+<header class="cm-header">
+    <div class="cm-container">
+  
+      <!-- LOGO -->
+      <a href="#" class="cm-logo">
+        <img src="./img/chemarket_logo.png" alt="Chemarket">
+      </a>
+  
+      <!-- SEARCH -->
+      <div class="cm-search">
+        <input type="text" placeholder="Search chemicals, CAS, suppliers...">
+      </div>
+  
+      <!-- ACTIONS -->
+      <div class="cm-actions">
+  
+        <a href="#">
+          <i class="bi bi-cart"></i>
+          <span class="cm-text">Cart</span>
+        </a>
+
+        <div class="header-inner">
+           
+          <span class="profile" id="accountToggle">
+              <img src="https://i.pravatar.cc/100?img=12">
+              <i class="bi bi-chevron-down text-white"></i>
+          </span>
+  </div>
+  
+      </div>
+
+
+
+
+
+  
+
+  <!-- DROPDOWN -->
+  <div class="account-dropdown" id="accountBox">
+      <div class="account-header">
+          <img src="https://i.pravatar.cc/100?img=12">
+          <div style="display:inline-block;vertical-align:middle;">
+              <div class="account-name">Watson Anderson</div>
+              <div class="account-email">Watsonbuyer@gmail.com</div>
+          </div>
+      </div>
+
+      <a href="#" class="account-item">
+          <i class="bi bi-house"></i> Home
+      </a>
+      <a href="#" class="account-item">
+          <i class="bi bi-gear"></i> Settings
+      </a>
+      <a href="#" class="account-item">
+          <i class="bi bi-question-circle"></i> Help
+      </a>
+      <a href="#" class="account-item">
+          <i class="bi bi-box-arrow-right"></i> Sign Out
+      </a>
+  </div>
+  
+    </div>
+</header>
+
+
+<!--PRODUCT CATEGORY SECTION START-->
+
+
+<section>
+
+  
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb top-breadcrumb">
+      <li class="breadcrumb-item"><a href="#" class="text-decoration-none ">Chemarket <br>
+          <span>Marketplace </span> </a></li>
+      <li class="breadcrumb-item"><a href="#" class="text-decoration-none ">category <br>
+          <span>Agriculture & Feed Products</span></a></li>
+    </ol>
+  </nav>
+
+<div class="main-wrapper">
+
+  <div class="page-header">
+      <h1>Agriculture & Feed Products</h1>
+      <p>Explore 12,905 verified products across multiple Agriculture & Feed categories</p>
+  </div>
+
+
+
+  <div class="category-section">
+      <h6>Product Categories</h6>
+      <div class="chip-container">
+          <div class="cat-chip"><img src="https://picsum.photos/50/50?random=1"> Agricultural Pest Control</div>
+          <div class="cat-chip"><img src="https://picsum.photos/50/50?random=2"> Agricultural Pest Control</div>
+          <div class="cat-chip"><img src="https://picsum.photos/50/50?random=3"> Agricultural Pest Control</div>
+      </div>
+  </div>
+
+  <div class="filter-bar">
+      <div class="filter-group">
+          <span class="filter-label"><i class="bi bi-funnel"></i> Filter by preference</span>
+          <div class="filter-dropdown">Product families <i class="bi bi-chevron-down ms-1"></i></div>
+          <div class="filter-dropdown">Functions <i class="bi bi-chevron-down ms-1"></i></div>
+          <div class="filter-dropdown">Application crop <i class="bi bi-chevron-down ms-1"></i></div>
+          <div class="filter-dropdown">Suppliers <i class="bi bi-chevron-down ms-1"></i></div>
+      </div>
+
+     
+  </div>
+
+  <div class="tabs-and-view-control-container">
+
+ 
+
+  <div class="tabs">
+      <div class="tab active" data-target="products">Products</div>
+      <div class="tab" data-target="brands">Brands</div>
+      <div class="tab" data-target="suppliers">Suppliers</div>
+
+  </div>
+
+      <div class="view-controls">
+          <div class="control-item"><i class="bi bi-sliders"></i> Relevance <i class="bi bi-chevron-down"></i></div>
+          <div class="control-item active" id="viewToggle">
+              <i class="bi bi-grid"></i> <span>Grid view</span> <i class="bi bi-chevron-down"></i>
+          </div>
+      </div>
+</div>
+  <div id="products" class="tab-content active">
+      <div class="product-grid" id="productGrid">
+
+          <div class="product-card">
+              <div class="card-image" style="background-image:url('./img3/productbackg5.png')">
+                  <div class="brand-avatar">
+                      <img src="./img3/Braskemcircleicon.png">
+                  </div>
+              </div>
+              <div class="card-body">
+                  <div class="brand-name">Braskem Chemicals</div>
+                  <div class="product-name">Industrial-grade Sodium Chloride</div>
+                  <div class="spec-row">
+                      <span class="spec-label">Applications:</span>
+                      <span class="spec-value">Chemical Manufacturing, Water Treatment</span>
+                  </div>
+                  <div class="spec-row">
+                      <span class="spec-label">Product Families:</span>
+                      <span class="spec-value">Inorganic Salts</span>
+                  </div>
+                  <div class="description-label">Product description</div>
+                  <div class="description-preview">High-purity sodium chloride suitable for industrial processes...</div>
+                  <div class="description-full">Detailed technical info about purification and hardness control.</div>
+              </div>
+              <div class="card-footer">
+                  <div class="btn-toggle-desc"><i class="bi bi-chevron-down"></i></div>
+                  <button class="btn-view">View Product</button>
+              </div>
+          </div>
+
+          <div class="product-card">
+              <div class="card-image" style="background-image:url('./img3/productbackg.png')">
+                  <div class="brand-avatar">
+                      <img src="./img3/andersonicon.png">
+                  </div>
+              </div>
+              <div class="card-body">
+                  <div class="brand-name">Anderson Specialty Materials</div>
+                  <div class="product-name">Agricultural Sodium Chloride</div>
+                  <div class="spec-row">
+                      <span class="spec-label">Applications:</span>
+                      <span class="spec-value">Agriculture, Pest Control</span>
+                  </div>
+                  <div class="spec-row">
+                      <span class="spec-label">Product Families:</span>
+                      <span class="spec-value">Agricultural Inputs</span>
+                  </div>
+                  <div class="description-label">Product description</div>
+                  <div class="description-preview">Sodium chloride formulated for agricultural applications...</div>
+                  <div class="description-full">Used widely across farming and crop-protection industries.</div>
+              </div>
+              <div class="card-footer">
+                  <div class="btn-toggle-desc"><i class="bi bi-chevron-down"></i></div>
+                  <button class="btn-view">View Product</button>
+              </div>
+          </div>
+
+          <div class="product-card">
+              <div class="card-image" style="background-image:url('./img3/productbackg2.png')">
+                  <div class="brand-avatar">
+                      <img src="./img3/chtcircleicon.png">
+                  </div>
+              </div>
+              <div class="card-body">
+                  <div class="brand-name">Gulf chemical Ltd</div>
+                  <div class="product-name">Pharmaceutical-support Sodium Chloride</div>
+                  <div class="spec-row">
+                      <span class="spec-label">Applications:</span>
+                      <span class="spec-value">Agriculture, Pest Control</span>
+                  </div>
+                  <div class="spec-row">
+                      <span class="spec-label">Product Families:</span>
+                      <span class="spec-value">Agricultural Inputs</span>
+                  </div>
+
+                  <div class="spec-row">
+                      <span class="spec-label">Chemical Family:</span>
+                      <span class="spec-value">Chloride Compounds</span>
+                  </div>
+                  <div class="description-label">Pharma Processing, Laboratory Use</div>
+                  <div class="description-preview">Refined sodium chloride designed for pharmaceutical and laboratory environments where controlled quality is essential.</div>
+                  <div class="description-full">Used widely across farming and crop-protection industries.</div>
+              </div>
+              <div class="card-footer">
+                  <div class="btn-toggle-desc"><i class="bi bi-chevron-down"></i></div>
+                  <button class="btn-view">View Product</button>
+              </div>
+          </div>
+
+
+
+
+          <div class="product-card">
+              <div class="card-image" style="background-image:url('./img3/productback.png')">
+                  <div class="brand-avatar">
+                      <img src="./img3/primientcircleicon.png">
+                  </div>
+              </div>
+              <div class="card-body">
+                  <div class="brand-name">Anderson Specialty Materials</div>
+                  <div class="product-name">Agricultural Sodium Chloride</div>
+                  <div class="spec-row">
+                      <span class="spec-label">Applications:</span>
+                      <span class="spec-value">Agriculture, Pest Control</span>
+                  </div>
+                  <div class="spec-row">
+                      <span class="spec-label">Product Families:</span>
+                      <span class="spec-value">Agricultural Inputs</span>
+                  </div>
+                  <div class="description-label">Product description</div>
+                  <div class="description-preview">Sodium chloride formulated for agricultural applications...</div>
+                  <div class="description-full">Used widely across farming and crop-protection industries.</div>
+              </div>
+              <div class="card-footer">
+                  <div class="btn-toggle-desc"><i class="bi bi-chevron-down"></i></div>
+                  <button class="btn-view">View Product</button>
+              </div>
+          </div>
+
+
+
+
+          <div class="product-card">
+              <div class="card-image" style="background-image:url('./img3/Productbackg4.png')">
+                  <div class="brand-avatar">
+                      <img src="./img3/roquettecircleicon.png">
+                  </div>
+              </div>
+              <div class="card-body">
+                  <div class="brand-name">Anderson Specialty Materials</div>
+                  <div class="product-name">Agricultural Sodium Chloride</div>
+                  <div class="spec-row">
+                      <span class="spec-label">Applications:</span>
+                      <span class="spec-value">Agriculture, Pest Control</span>
+                  </div>
+                  <div class="spec-row">
+                      <span class="spec-label">Product Families:</span>
+                      <span class="spec-value">Agricultural Inputs</span>
+                  </div>
+                  <div class="description-label">Product description</div>
+                  <div class="description-preview">Sodium chloride formulated for agricultural applications...</div>
+                  <div class="description-full">Used widely across farming and crop-protection industries.</div>
+              </div>
+              <div class="card-footer">
+                  <div class="btn-toggle-desc"><i class="bi bi-chevron-down"></i></div>
+                  <button class="btn-view">View Product</button>
+              </div>
+          </div>
+
+
+
+          <div class="product-card">
+              <div class="card-image" style="background-image:url('./img3/Productbackg3.png')">
+                  <div class="brand-avatar">
+                      <img src="./img3/dragonicon.png">
+                  </div>
+              </div>
+              <div class="card-body">
+                  <div class="brand-name">Anderson Specialty Materials</div>
+                  <div class="product-name">Agricultural Sodium Chloride</div>
+                  <div class="spec-row">
+                      <span class="spec-label">Applications:</span>
+                      <span class="spec-value">Agriculture, Pest Control</span>
+                  </div>
+                  <div class="spec-row">
+                      <span class="spec-label">Product Families:</span>
+                      <span class="spec-value">Agricultural Inputs</span>
+                  </div>
+                  <div class="description-label">Product description</div>
+                  <div class="description-preview">Sodium chloride formulated for agricultural applications...</div>
+                  <div class="description-full">Used widely across farming and crop-protection industries.</div>
+              </div>
+              <div class="card-footer">
+                  <div class="btn-toggle-desc"><i class="bi bi-chevron-down"></i></div>
+                  <button class="btn-view">View Product</button>
+              </div>
+          </div>
+
+      </div>
+  </div>
+
+  <div id="brands" class="tab-content"><div class="p-5 text-center">Brands List</div></div>
+  <div id="suppliers" class="tab-content"><div class="p-5 text-center">Suppliers List</div></div>
+
+</div>
+</section>
+
+
+<!--PRODUCT CATEGORY SECTION END-->
+
+
+
+
+
+  
+<footer class="cm-footer">
+
+    <!-- TOP FOOTER -->
+    <div class="cm-footer-top">
+  
+        <!-- BRAND -->
+        <div class="cm-footer-brand">
+            <img src="./img/footer_logo.png" alt="Chemarket">
+            <h4>Global, Reliable Chemical Supply</h4>
+            <p>
+                Access high-grade chemicals worldwide through Chemarket, with verified
+                quality, stable logistics, and steady supply for cosmetics,
+                pharmaceutical, and industrial applications.
+            </p>
+  
+            <div class="cm-social">
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-facebook"></i></a>
+            </div>
+        </div>
+  
+        <!-- FOR CUSTOMERS -->
+       
+  
+        <div class="cm-footer-col">
+          <h5 class="cm-footer-toggle">
+            For Customers
+            <i class="bi bi-chevron-down accordian-icon"></i>
+          </h5>
+          <ul class="cm-footer-menu">
+            <li><i class="bi bi-chevron-right"></i><a href="#">Features for buyers</a></li>
+          </ul>
+        </div>
+        
+  
+        <!-- FOR SELLERS -->
+        <div class="cm-footer-col">
+          <h5 class="cm-footer-toggle">
+            For Seller
+            <i class="bi bi-chevron-down accordian-icon"></i>
+          </h5>
+          <ul class="cm-footer-menu">
+            <li><i class="bi bi-chevron-right"></i><a href="#">Selling on chemarket</a></li>
+          </ul>
+        </div>
+        
+  
+        <!-- COMPANY -->
+        
+        <div class="cm-footer-col">
+          <h5 class="cm-footer-toggle">
+            Company
+            <i class="bi bi-chevron-down accordian-icon"></i>
+          </h5>
+          <ul class="cm-footer-menu">
+            <li><i class="bi bi-chevron-right"></i><a href="#">About us</a></li>
+            <li><i class="bi bi-chevron-right"></i><a href="#">Contact us</a></li>
+            <li><i class="bi bi-chevron-right"></i><a href="#">Help center</a></li>
+            <li><i class="bi bi-chevron-right"></i><a href="#">Blogs</a></li>
+            <li><i class="bi bi-chevron-right"></i><a href="#">Terms of use </a></li>
+          </ul>
+        </div>
+        
+  
+    </div>
+  
+    <!-- BOTTOM BAR -->
+    <div class="cm-footer-bottom">
+        <div class="cm-footer-bottom-inner">
+            <div class="cm-footer-bottom-left">
+                © Chemarket 2026. All rights reserved.
+            </div>
+            <div class="cm-footer-bottom-right">
+                <a href="#">Terms of use</a>
+                <a href="#">Privacy policies & cookies</a>
+                <a href="#">Change language</a>
+            </div>
+        </div>
+    </div>
+  
+  </footer>
+
+
+
+  
+
+  <script script src="/script/Productcategoryscript.js">
+    
+    </script>
+
+    <script>
+      
+    $(document).ready(function () {
+    
+      function footerAccordion() {
+        if (window.innerWidth <= 576) {
+    
+          $('.cm-footer-toggle').off('click').on('click', function () {
+            const parent = $(this).closest('.cm-footer-col');
+    
+            // Close others
+            $('.cm-footer-col').not(parent).removeClass('active');
+    
+            // Toggle current
+            parent.toggleClass('active');
+          });
+    
+        } else {
+          // Reset for tablet & desktop
+          $('.cm-footer-col').removeClass('active');
+          $('.cm-footer-menu').removeAttr('style');
+        }
+      }
+    
+      footerAccordion();
+      $(window).on('resize', footerAccordion);
+
+
+
+
+      /*logic for accordian for account opening*/
+
+      $("#accountToggle").on("click", function (e) {
+        e.stopPropagation();
+
+        if ($("#accountBox").is(":visible")) {
+            $("#accountBox").slideUp(250);
+            $(".profile").removeClass("active");
+        } else {
+            $("#accountBox").slideDown(250);
+            $(".profile").addClass("active");
+        }
+    });
+
+    $(document).on("click", function () {
+        $("#accountBox").slideUp(250);
+        $(".profile").removeClass("active");
+    });
+
+    $("#accountBox").on("click", function (e) {
+        e.stopPropagation();
+    });
+
+    
+    });
+
+
+    
+    </script>
+    
+
+</body>
+</html>

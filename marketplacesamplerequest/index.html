@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chemarket Header</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<link rel="stylesheet" href="/css/header.css">
+
+<link rel="stylesheet" href="./style.css">
+
+<style>
+
+
+</style>
+</head>
+
+<body>
+
+<header class="cm-header">
+  <div class="cm-container">
+
+    <!-- LOGO -->
+    <a href="#" class="cm-logo">
+      <img src="./img/chemarket_logo.png" alt="Chemarket">
+    </a>
+
+    <!-- SEARCH -->
+    <div class="cm-search">
+      <input type="text" placeholder="Search chemicals, CAS, suppliers...">
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="cm-actions">
+
+      <a href="#">
+        <i class="bi bi-cart"></i>
+        <span class="cm-text">Cart</span>
+      </a>
+
+     
+
+    </div>
+
+  </div>
+</header>
+
+
+
+<section class="section-container">
+  <div class="header-badge">Chemarket Marketplace</div>
+  
+  <h1 class="main-heading">
+      Browse the Chemical <br> Marketplace <span>built for RFQ's</span>
+  </h1>
+  
+  <p class="sub-text">
+      Search, filter, and shortlist verified suppliers before <br> you ever send an RFQ.
+  </p>
+
+  <div class="cards-wrapper">
+      <div class="category-card">
+          <div class="category-image">
+            <img src="./img/food.png" alt="food">
+          </div>
+          <div class="card-overlay">
+              <div class="icon-circle">
+                <img src="./img/icon/plastic.png" alt="pain">
+
+              </div>
+              <h3 class="category-title">Agriculture & Feed</h3>
+              <p class="category-count">12 categories</p>
+          </div>
+      </div>
+
+      <div class="category-card">
+          <div class="category-image">
+
+            <img src="./img/makeup.png" alt="food">
+
+          </div>
+          <div class="card-overlay">
+              <div class="icon-circle">
+                <img src="./img/icon/care.png" alt="pain">
+
+              </div>
+              <h3 class="category-title">Personal Care and Cosmetics</h3>
+              <p class="category-count">12 categories</p>
+          </div>
+      </div>
+
+      <div class="category-card">
+          <div class="category-image">
+            <img src="./img/homebackground.png" alt="food">
+          </div>
+          <div class="card-overlay">
+              <div class="icon-circle">
+                <img src="./img/icon/home.png" alt="pain">
+
+              </div>
+              <h3 class="category-title">Home and Industrial Care</h3>
+              <p class="category-count">12 categories</p>
+          </div>
+      </div>
+
+      <div class="category-card">
+          <div class="category-image">
+            <img src="./img/food.png" alt="food">
+          </div>
+          <div class="card-overlay">
+              <div class="icon-circle">
+                <img src="./img/icon/food.png" alt="pain">
+
+              </div>
+              <h3 class="category-title">Food & Nutrition</h3>
+              <p class="category-count">12 categories</p>
+          </div>
+      </div>
+
+      <div class="category-card">
+          <div class="category-image">
+            <img src="./img/building.png" alt="food">
+          </div>
+          <div class="card-overlay">
+              <div class="icon-circle">
+                <img src="./img/icon/building.png" alt="pain">
+
+              </div>
+              <h3 class="category-title">Building & Construction</h3>
+              <p class="category-count">12 categories</p>
+          </div>
+      </div>
+
+      <div class="category-card">
+          <div class="category-image">
+            <img src="./img/industrial.png" alt="food">
+          </div>
+          <div class="card-overlay">
+              <div class="icon-circle">
+                <img src="./img/icon/industrial.png" alt="pain">
+
+              </div>
+              <h3 class="category-title">Industrial Manufacturing...</h3>
+              <p class="category-count">12 categories</p>
+          </div>
+      </div>
+
+      <div class="category-card">
+          <div class="category-image">
+            <img src="./img/paint.png" alt="food">
+          </div>
+          <div class="card-overlay">
+              <div class="icon-circle">
+                <img src="./img/icon/paint.png" alt="pain">
+
+              </div>
+              <h3 class="category-title">Paints, Coatings & Adhesives</h3>
+              <p class="category-count">12 categories</p>
+          </div>
+      </div>
+
+      <div class="category-card">
+          <div class="category-image">
+            <img src="./img/industrial.png" alt="food">
+          </div>
+          <div class="card-overlay">
+              <div class="icon-circle">
+                <img src="./img/icon/plastic.png" alt="pain">
+              </div>
+              <h3 class="category-title">Plastics & Polymers</h3>
+              <p class="category-count">12 categories</p>
+          </div>
+      </div>
+  </div>
+
+  <a href="#" class="see-more-btn">See more</a>
+</section>
+
+
+
+
+
+<div class="main-container">
+  <div class="tabs-wrapper">
+      <div class="tabs-nav">
+          <button class="tab-btn active" data-target="procurement">
+              <i class="bi bi-person-fill"></i> For Procurement Teams
+          </button>
+          <button class="tab-btn" data-target="suppliers">
+              <i class="bi bi-people-fill"></i> For Chemical Suppliers
+          </button>
+      </div>
+  </div>
+
+  <div id="procurement" class="tab-content active">
+      <div class="grid-card">
+          <div class="image-box">
+              <img src="./img/forprocrumenttab.png" alt="Procurement">
+          </div>
+          <div class="text-box">
+              <h2>For procurement and technical buying teams</h2>
+              <p>  CheMarket is for sourcing, QA, regulatory and plant teams that need reliable inputs from verified partners, with complete documentation and a clear record of how each decision was made.</p>
+              <ul class="feature-list">
+                  <li> <img src="./img/rightdirection.png" alt=""> Compare multiple suppliers before sending RFQs</li>
+                  <li> <img src="./img/rightdirection.png" alt=""> Reduce sourcing risk with upfront information</li>
+                  <li> <img src="./img/rightdirection.png" alt=""> Improve decision quality with structured data</li>
+                  <li> <img src="./img/rightdirection.png" alt=""> Save time by engaging only relevant suppliers</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+
+  <div id="suppliers" class="tab-content">
+      <div class="grid-card">
+          <div class="image-box">
+              <img src="./img/forchemicaltab.png" alt="Suppliers">
+          </div>
+          <div class="text-box">
+              <h2>Expand your reach to global buyers</h2>
+              <p>Showcase your chemical products to a verified network of technical buyers looking for quality and reliability.</p>
+              <ul class="feature-list">
+                  <li><img src="./img/rightdirection.png" alt="">  Increase visibility in new markets</li>
+                  <li> <img src="./img/rightdirection.png" alt=""> Manage RFQs efficiently in one place</li>
+                  <li> <img src="./img/rightdirection.png" alt=""> Build trust with verified documentation</li>
+                  <li> <img src="./img/rightdirection.png" alt=""> Connect directly with technical decision makers</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!--TRUSTED BY BUYER AND SUPPLIER-->
+
+<section class="trusted-section">
+      <h2>Trusted by buyers and <br>
+        suppliers <span>worldwide</span></h2>
+
+        <div class="trusted-supplier">
+          <img src="./img/feature_supplier/brand_5.png" alt="trusted-img">            
+
+               <img src="./img/feature_supplier/brand_1.png" alt="trusted-img">
+               <img src="./img/feature_supplier/brand_2.png" alt="trusted-img">
+               <img src="./img/feature_supplier/brand_3.png" alt="trusted-img">
+               <img src="./img/feature_supplier/brand_4.png" alt="trusted-img">
+        </div>
+</section>
+
+
+<!--FEATURE SUPPLIER START-->
+
+
+
+<div class="page-wrapper">
+
+  <div style="text-align:center;">
+      <div class="badge-custom">Featured Suppliers</div>
+
+      <div class="heading">
+          Supplier storefronts designed<br>
+          <span>for informed sourcing</span>
+      </div>
+
+      <div class="sub-text">
+        Explore curated supplier storefronts showcasing product portfolios, technical expertise, and documentation.
+      </div>
+  </div>
+
+  <div class="card-wrapper">
+      <div class="supplier-list">
+
+          <div class="supplier-card">
+              <div class="supplier-image">
+                  <img src="./img/feature_supplierlist/supplier1.png" alt="">
+              </div>
+          </div>
+
+          <div class="supplier-card">
+              <div class="supplier-image">
+                <img src="./img/feature_supplierlist/supplier2.png" alt="">
+
+              </div>
+          </div>
+
+          <div class="supplier-card">
+              <div class="supplier-image">
+                <img src="./img/feature_supplierlist/supplier3.png" alt="">
+
+              </div>
+          </div>
+
+          <div class="supplier-card">
+              <div class="supplier-image">
+                <img src="./img/feature_supplierlist/supplier4.png" alt="">
+
+              </div>
+          </div>
+
+          <div class="supplier-card">
+              <div class="supplier-image">
+                <img src="./img/feature_supplierlist/supplier5.png" alt="">
+
+              </div>
+          </div>
+
+          <div class="supplier-card">
+              <div class="supplier-image">
+                <img src="./img/feature_supplierlist/supplier6.png" alt="">
+
+              </div>
+          </div>
+
+          <div class="supplier-card">
+              <div class="supplier-image">
+                <img src="./img/feature_supplierlist/supplier7.png" alt="">
+
+              </div>
+          </div>
+
+          <div class="supplier-card">
+              <div class="supplier-image">
+                <img src="./img/feature_supplierlist/supplier8.png" alt="">
+
+              </div>
+          </div>
+
+      </div>
+  </div>
+
+</div>
+
+
+<!--FEATURE SUPPLIER END-->
+<!--BROSWE MARKETPLACE START-->
+<section class="browse-marketplace-section">
+       <div>
+             <img src="./img/footer_icon.png" alt="footer-icon">
+             <button class="browse-btn">Browse Marketplace</button>
+
+       </div>
+
+
+</section>
+
+<!--BROSWE MARKETPLACE END-->
+
+
+<footer class="cm-footer">
+
+  <!-- TOP FOOTER -->
+  <div class="cm-footer-top">
+
+      <!-- BRAND -->
+      <div class="cm-footer-brand">
+          <img src="./img/footer_logo.png" alt="Chemarket">
+          <h4>Global, Reliable Chemical Supply</h4>
+          <p>
+              Access high-grade chemicals worldwide through Chemarket, with verified
+              quality, stable logistics, and steady supply for cosmetics,
+              pharmaceutical, and industrial applications.
+          </p>
+
+          <div class="cm-social">
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+              <a href="#"><i class="bi bi-twitter-x"></i></a>
+              <a href="#"><i class="bi bi-facebook"></i></a>
+          </div>
+      </div>
+
+      <!-- FOR CUSTOMERS -->
+     
+
+      <div class="cm-footer-col">
+        <h5 class="cm-footer-toggle">
+          For Customers
+          <i class="bi bi-chevron-down accordian-icon"></i>
+        </h5>
+        <ul class="cm-footer-menu">
+          <li><i class="bi bi-chevron-right"></i><a href="#">Features for buyers</a></li>
+        </ul>
+      </div>
+      
+
+      <!-- FOR SELLERS -->
+      <div class="cm-footer-col">
+        <h5 class="cm-footer-toggle">
+          For Seller
+          <i class="bi bi-chevron-down accordian-icon"></i>
+        </h5>
+        <ul class="cm-footer-menu">
+          <li><i class="bi bi-chevron-right"></i><a href="#">Selling on chemarket</a></li>
+        </ul>
+      </div>
+      
+
+      <!-- COMPANY -->
+      
+      <div class="cm-footer-col">
+        <h5 class="cm-footer-toggle">
+          Company
+          <i class="bi bi-chevron-down accordian-icon"></i>
+        </h5>
+        <ul class="cm-footer-menu">
+          <li><i class="bi bi-chevron-right"></i><a href="#">About us</a></li>
+          <li><i class="bi bi-chevron-right"></i><a href="#">Contact us</a></li>
+          <li><i class="bi bi-chevron-right"></i><a href="#">Help center</a></li>
+          <li><i class="bi bi-chevron-right"></i><a href="#">Blogs</a></li>
+          <li><i class="bi bi-chevron-right"></i><a href="#">Terms of use </a></li>
+        </ul>
+      </div>
+      
+
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="cm-footer-bottom">
+      <div class="cm-footer-bottom-inner">
+          <div class="cm-footer-bottom-left">
+              © Chemarket 2026. All rights reserved.
+          </div>
+          <div class="cm-footer-bottom-right">
+              <a href="#">Terms of use</a>
+              <a href="#">Privacy policies & cookies</a>
+              <a href="#">Change language</a>
+          </div>
+      </div>
+  </div>
+
+</footer>
+
+
+
+  <script src="./script.js">
+    $(document).ready(function () {
+    
+      function footerAccordion() {
+        if (window.innerWidth <= 576) {
+    
+          $('.cm-footer-toggle').off('click').on('click', function () {
+            const parent = $(this).closest('.cm-footer-col');
+    
+            // Close others
+            $('.cm-footer-col').not(parent).removeClass('active');
+    
+            // Toggle current
+            parent.toggleClass('active');
+          });
+    
+        } else {
+          // Reset for tablet & desktop
+          $('.cm-footer-col').removeClass('active');
+          $('.cm-footer-menu').removeAttr('style');
+        }
+      }
+    
+      footerAccordion();
+      $(window).on('resize', footerAccordion);
+    
+    });
+    </script>
+    
+</script>
+</body>
+</html>
