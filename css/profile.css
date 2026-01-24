@@ -1,0 +1,105 @@
+
+  
+
+.profile {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  background: white;
+  border-radius: 30px;
+  padding: 4px 10px;
+}
+
+.profile img {
+width: 30px;
+height: 30px;
+border-radius: 50%;
+}
+
+/* DROPDOWN */
+.account-dropdown {
+position: absolute;
+top: 72px;
+right: 16px;
+width: 260px;
+background: #fff;
+border-radius: 10px;
+box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+display: none;
+}
+
+.account-header {
+display: block;
+border-bottom: 1px solid #eee;
+}
+
+.account-header img {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+}
+
+.account-name {
+font-weight: 600;
+font-size: 14px;
+}
+
+.account-email {
+font-size: 12px;
+color: #777;
+}
+
+.account-item {
+display: block;
+color: #333;
+font-size: 14px;
+text-decoration: none;
+border-bottom: 1px solid #f1f1f1;
+}
+
+.account-item i {
+font-size: 16px;
+color: #666;
+}
+
+.account-item:last-child {
+border-bottom: none;
+}
+
+/* SPACING WITHOUT BOOTSTRAP UTILITIES */
+.header-right > * {
+margin-right: 14px;
+}
+
+.account-header,
+.account-item {
+padding: 12px 14px;
+}
+
+.account-header img {
+margin-right: 10px;
+}
+
+.account-item i {
+margin-right: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 576px) {
+.account-dropdown {
+    right: 8px;
+    width: 92%;
+}
+}
+
+
+.profile i {
+display: inline-block;
+transition: transform 0.3s ease;
+color: black !important;
+}
+
+
+.profile.active i {
+transform: rotate(180deg);
+}

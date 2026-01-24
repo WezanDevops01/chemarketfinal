@@ -155,3 +155,14 @@
     });
 
 Today Task Completed : moved login ,register , buyer broadcast rfq and direct rfq html design to chemarket github and implemented the login html design in chemarket live site
+
+
+
+
+
+
+Today Task completed : worked on chemarket to converting figma ui to html for the  Product category page with responsive design for all devices  ,added tab switch functionality and accordian for view description 
+
+header : added account toggle opening functionality.
+
+thank you
